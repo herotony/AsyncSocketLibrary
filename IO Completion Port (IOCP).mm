@@ -10,8 +10,7 @@
       &#36825;&#26159;&#19968;&#31181;&#25903;&#25345;<b><font color="#006666">&#39640;&#24615;&#33021;&#65292;&#22823;&#24182;&#21457;&#30340;&#24322;&#27493;&#22788;&#29702;&#27169;&#24335;</font></b>&#65292;&#24191;&#27867;&#24212;&#29992;&#20110;&#31867;&#20284;TCP/IP&#36890;&#35759;&#24212;&#29992;&#31243;&#24207;&#20013;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1421203644977" FOLDED="true" ID="ID_861298209" LINK="http://www.codeproject.com/Articles/1052/Developing-a-Truly-Scalable-Winsock-Server-using-I" MODIFIED="1421285189475" POSITION="right" TEXT="IOCP&#x9610;&#x8ff0;&#x6587;&#x7ae0;&#x4e00;[c++&#x7248;]">
 <node CREATED="1421203673141" FOLDED="true" ID="ID_916500432" MODIFIED="1421224709337" TEXT="&#x8bf4;&#x660e;&#x56fe;&#x793a;">
 <node CREATED="1421221255239" ID="ID_771791791" MODIFIED="1421221262841">
@@ -337,10 +336,75 @@
       public static Int32 maxSimultaneousClientsThatWereConnected = 0;
     </p>
   </body>
+</html></richcontent>
+<node CREATED="1421305760640" ID="ID_1858593748" MODIFIED="1421305771515" TEXT="invoke">
+<node CREATED="1421305772721" ID="ID_1389023056" LINK="https://gist.github.com/herotony/7b855fc07239d77fc8a1/#file-socketasyncserver_socketlistenersettings-cs" MODIFIED="1421373602119" TEXT="1&#x3001;SocketListenerSettings">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      &#35774;&#23450;&#30340;<font color="#006600">&#26368;&#22823;&#36830;&#25509;&#25968;</font>&#19968;&#33324;&#31561;&#20110;<font color="#006666">&#26368;&#22823;saea&#30340;&#39044;&#20998;&#37197;&#23454;&#20363;&#21270;&#25968;</font><font color="#000000">&#65292;&#20063;&#23601;&#26159;&#26381;&#21153;&#31471;listen&#26102;&#65292;&#26368;&#22823;&#20801;&#35768;</font><font color="#006666">&#30340;&#24182;&#21457;&#25509;&#25910;&#30340;&#35831;&#27714;&#36830;&#25509;&#25968;</font>&#12290;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      <font color="#006600">//This variable determines the number of </font>
+    </p>
+    <p>
+      <font color="#006600">//<b>SocketAsyncEventArg objects put in the pool of objects for receive/send.</b>&#160;</font>
+    </p>
+    <p>
+      <font color="#006600">//The value of this variable also affects the </font><font color="#006666"><b>Semaphore</b></font><font color="#006600">. </font>
+    </p>
+    <p>
+      <font color="#006600">//This app</font><font color="#006666">&#160;uses a Semaphore to ensure that the max # of connections</font>
+    </p>
+    <p>
+      <font color="#006600">//value does not get exceeded. </font>
+    </p>
+    <p>
+      <font color="#006600">//Max # of connections to a socket can be </font><font color="#006666">limited by the Windows Operating System</font>
+    </p>
+    <p>
+      <font color="#006600">//</font><font color="#006666"><b>also</b></font><font color="#006600">.</font>
+    </p>
+    <p>
+      public const Int32 maxNumberOfConnections = 3000;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#36825;&#20010;&#21442;&#25968;&#21482;&#24433;&#21709;&#26368;&#22823;&#30340;&#25509;&#25910;&#36830;&#25509;&#30340;saea&#25968;&#65292;10&#20010;&#22815;&#22810;&#20102;&#65292;<font color="#006666">&#27605;&#31455;&#21482;&#26159;&#20010;&#20256;&#36882;&#36807;&#31243;</font>&#65292;&#36807;&#22823;&#23436;&#20840;&#27809;&#24847;&#20041;
+    </p>
+    <p>
+      <font color="#006600">//This is the maximum number of asynchronous accept operations that can be </font>
+    </p>
+    <p>
+      <font color="#006600">//posted simultaneously. This determines the size of the pool of </font>
+    </p>
+    <p>
+      <font color="#006600">//SocketAsyncEventArgs objects that do accept operations. <b>Note that this </b></font>
+    </p>
+    <p>
+      <font color="#006600">//<b>is NOT the same as the maximum # of connections</b>.</font>
+    </p>
+    <p>
+      public const Int32 maxSimultaneousAcceptOps = 10;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      
+    </p>
+  </body>
 </html>
 </richcontent>
-<node CREATED="1421305760640" ID="ID_1858593748" MODIFIED="1421305771515" TEXT="invoke">
-<node CREATED="1421305772721" ID="ID_1389023056" LINK="https://gist.github.com/herotony/7b855fc07239d77fc8a1/#file-socketasyncserver_socketlistenersettings-cs" MODIFIED="1421306241306" TEXT="1&#x3001;SocketListenerSettings"/>
+</node>
 <node CREATED="1421305810209" ID="ID_1942508174" LINK="https://gist.github.com/herotony/7b855fc07239d77fc8a1/#file-socketasyncserver_socketlistener-cs" MODIFIED="1421306566623" TEXT="2&#x3001;SocketListener">
 <node CREATED="1421306685201" ID="ID_724099088" MODIFIED="1421306687986" TEXT="invoke">
 <node CREATED="1421306852609" ID="ID_572130378" MODIFIED="1421306882626" TEXT="cotr : SocketListenerSettings"/>
@@ -354,7 +418,185 @@
 <node CREATED="1421306900225" ID="ID_1378383608" MODIFIED="1421306906801" TEXT="3&#x3001;BufferManager"/>
 <node CREATED="1421306923009" ID="ID_1001714745" MODIFIED="1421306935242" TEXT="4&#x3001;SocketAsyncEventArgsPool for Rec/Send"/>
 <node CREATED="1421306936401" ID="ID_90541497" MODIFIED="1421306945307" TEXT="5&#x3001;SocketAsyncEventArgsPool for Accept"/>
-<node CREATED="1421306957857" ID="ID_290140371" MODIFIED="1421306966113" TEXT="6&#x3001;Init()"/>
+<node CREATED="1421306957857" ID="ID_290140371" MODIFIED="1421373907100" TEXT="6&#x3001;Init()">
+<node CREATED="1421373907091" ID="ID_268426755" MODIFIED="1421373981127" TEXT="1&#x3001;&#x521d;&#x59cb;&#x5316;&#x6700;&#x5927;&#x4e00;&#x4e2a;&#x5de8;&#x5927;&#x5b8c;&#x6574;&#x8fde;&#x7eed;&#x7684;&#x7684;&#x5185;&#x5b58;&#x5757;">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font color="#006600">&#160;&#160;&#160;&#160;// Allocate one large byte buffer block, which all I/O operations will </font>
+    </p>
+    <p>
+      <font color="#006600">&#160;&#160;&#160;&#160;//use a piece of. <b>This gaurds against memory fragmentation</b>.</font>
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;this.theBufferManager.InitBuffer();
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1421374012626" ID="ID_1270555274" MODIFIED="1421374505595" TEXT="2&#x3001;&#x521d;&#x59cb;&#x5316;&#x5904;&#x7406;&#x63a5;&#x6536;&#x8fde;&#x63a5;&#x8bf7;&#x6c42;&#x7684;saea&#xff0c;&#x4e0d;&#x662f;&#x591a;&#x91cd;&#x8981;&#x7684;&#xff0c;&#x6700;&#x591a;10&#x4e2a;">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      &#160;<font color="#006600">&#160;&#160;&#160;// preallocate pool of SocketAsyncEventArgs objects for accept operations</font>
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;for (Int32 i = 0; i &lt; this.socketListenerSettings.MaxAcceptOps; i++)
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;{
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/<font color="#006600">/ add SocketAsyncEventArg to the pool</font>
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;&#160;&#160;<font color="#0000cc">&#160;&#160;this.poolOf<b>Accept</b>EventArgs.Push</font>(CreateNewSaeaForAccept(poolOfAcceptEventArgs));
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;}
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#35813;saea&#26080;&#38656;&#20219;&#20309;buffer&#65292;&#22240;&#20854;&#19981;&#25509;&#25910;&#25110;&#21457;&#36865;&#25968;&#25454;&#21482;&#26159;&#20256;&#36882;acceptsocket&#32780;&#24050;
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node BACKGROUND_COLOR="#ffff00" CREATED="1421374156913" ID="ID_997545620" MODIFIED="1421374559498" TEXT="3&#x3001;&#x6700;&#x5173;&#x952e;&#x7684;&#xff0c;&#x5b9e;&#x4f8b;&#x5316;maxconnection+extrasaeanumber&#x4e2a;saea&#x5b9e;&#x4f8b;&#x5e76;&#x8bbe;&#x7f6e;&#x76f8;&#x5e94;&#x7684;buffer&#x4f4d;&#x7f6e;&#x548c;usertoken">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font color="#006600">//The pool that we built ABOVE is for SocketAsyncEventArgs objects that do accept operations. </font>
+    </p>
+    <p>
+      <font color="#006600">//Now we will build a separate pool for SAEAs objects that do receive/send operations. One reason to separate them is that <b>accept</b>&#160;</font>
+    </p>
+    <p>
+      <font color="#006600">//<b>operations do NOT need a buffer</b>, but </font><font color="#006666"><b>receive/send operations do</b></font><font color="#006600">. </font>
+    </p>
+    <p>
+      <font color="#006600">//ReceiveAsync and SendAsync require </font>
+    </p>
+    <p>
+      <font color="#006600">//a parameter for buffer size in SocketAsyncEventArgs.Buffer. </font>
+    </p>
+    <p>
+      <font color="#006600">// So, create pool of SAEA objects for receive/send operations.</font>
+    </p>
+    <p>
+      SocketAsyncEventArgs eventArgObjectForPool;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Int32 tokenId;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      for (Int32 i = 0; i &lt; this.socketListenerSettings.NumberOfSaeaForRecSend; i++)
+    </p>
+    <p>
+      {
+    </p>
+    <p>
+      &#160;&#160;&#160;<font color="#006600">&#160;//Allocate the SocketAsyncEventArgs object for this loop, </font>
+    </p>
+    <p>
+      <font color="#006600">&#160;&#160;&#160;&#160;//to go in its place in the stack which will be the pool </font>
+    </p>
+    <p>
+      <font color="#006600">&#160;&#160;&#160;&#160;//for receive/send operation context objects.</font>
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;eventArgObjectForPool = new SocketAsyncEventArgs();
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;<font color="#006600">&#160;// <b>assign a byte buffer from the buffer block to</b>&#160;</font>
+    </p>
+    <p>
+      <font color="#006600">&#160;&#160;&#160;&#160;//<b>this particular SocketAsyncEventArg object&#65292;&#26368;&#20851;&#38190;&#37096;&#20998;</b></font>
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;this.theBufferManager.SetBuffer(eventArgObjectForPool);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;tokenId = poolOfRecSendEventArgs.AssignTokenId() + 1000000;
+    </p>
+    <p>
+      &#160;&#160;&#160;
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;eventArgObjectForPool.Completed += new EventHandler&lt;SocketAsyncEventArgs&gt;(IO_Completed);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;<font color="#006600">&#160;//We can store data in the UserToken property of SAEA object.</font>
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;DataHoldingUserToken theTempReceiveSendUserToken = new <font color="#006666"><b>DataHoldingUserToken</b></font>(eventArgObjectForPool, eventArgObjectForPool.Offset, eventArgObjectForPool.Offset + this.socketListenerSettings.BufferSize, this.socketListenerSettings.ReceivePrefixLength, this.socketListenerSettings.SendPrefixLength, tokenId);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;<font color="#006600">&#160;//We'll have an object that we call DataHolder, that we can remove from </font>
+    </p>
+    <p>
+      <font color="#006600">&#160;&#160;&#160;&#160;//the UserToken when we are finished with it. So, we can hang on to the </font>
+    </p>
+    <p>
+      <font color="#006600">&#160;&#160;&#160;&#160;//DataHolder, pass it to an app, serialize it, or whatever.</font>
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;theTempReceiveSendUserToken.CreateNewDataHolder();
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;<font color="#0000cc"><b>eventArgObjectForPool.UserToken</b></font>&#160;= theTempReceiveSendUserToken;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;// add this SocketAsyncEventArg object to the pool.
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;<font color="#0000cc">this.poolOfRecSendEventArgs.Push</font>(eventArgObjectForPool);
+    </p>
+    <p>
+      }
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
 <node CREATED="1421306967793" ID="ID_1191584512" MODIFIED="1421309153663" TEXT="7&#x3001;StartListen()">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -425,8 +667,7 @@
       StartAccept();
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1421309169377" ID="ID_1390738628" MODIFIED="1421309173098" TEXT="invoke ">
 <node CREATED="1421309174385" ID="ID_607662166" MODIFIED="1421309493129" TEXT="StartAccept">
 <richcontent TYPE="NOTE"><html>
@@ -690,11 +931,303 @@
       }
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1421309531553" ID="ID_1087709949" MODIFIED="1421309534737" TEXT="invoke ">
 <node CREATED="1421309535905" ID="ID_1609197239" MODIFIED="1421309581277" TEXT="CreateNewSaeaForAccept"/>
 <node CREATED="1421309586945" ID="ID_1348109696" MODIFIED="1421309592387" TEXT="ProcessAccept"/>
+</node>
+</node>
+</node>
+<node CREATED="1421375225442" ID="ID_1325708480" MODIFIED="1421375237779" TEXT="event trigger">
+<node CREATED="1421375209442" ID="ID_1030375100" MODIFIED="1421398576654" TEXT="ProcessReceive">
+<node COLOR="#993300" CREATED="1421376060962" ID="ID_311178034" MODIFIED="1421376100075" TEXT="&#x652f;&#x6301;&#x4e86;&#x4e00;&#x6761;&#x6d88;&#x606f;&#x53d1;&#x9001;&#x540e;&#xff0c;&#x5230;&#x670d;&#x52a1;&#x5668;&#x53ef;&#x80fd;&#x4f1a;&#x53d8;&#x6210;&#x5206;&#x51e0;&#x6b21;&#x63a5;&#x6536;&#x7684;&#x5904;&#x7406;&#x903b;&#x8f91;"/>
+<node CREATED="1421376136754" ID="ID_1874566087" MODIFIED="1421376143459" TEXT="DataHoldingUserToken">
+<node CREATED="1421376144706" ID="ID_466055346" MODIFIED="1421376447195" TEXT="receivedPrefixBytesDoneCount = 0&#x6216;&#x5c0f;&#x4e8e;this.socketListenerSettings.ReceivePrefixLength(&#x4e00;&#x822c;&#x4e3a;4)">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      &#20195;&#34920;&#35813;saea&#25509;&#25910;&#30340;&#28040;&#24687;&#26410;&#32463;&#36807;prefixHandler&#22788;&#29702;&#21602;&#65292;&#27605;&#31455;&#37117;&#26159;&#21516;&#19968;&#20010;usertoken&#23545;&#24212;&#30340;saea&#21487;&#33021;<font color="#006666"><b>&#20998;&#25209;&#27425;</b></font>&#25509;&#25910;&#28040;&#24687;&#65292;
+    </p>
+    <p>
+      &#37027;&#20040;<font color="#006666">&#31532;&#19968;&#20010;&#28040;&#24687;&#27573;&#24517;&#23450;&#20854;receivedPrefixBytesDoneCount = 0 &#20134;&#25110;&#31532;&#19968;&#20010;&#28040;&#24687;&#27573;&#24456;&#34928;&#65292;&#21482;&#20256;&#36807;&#26469;&#23567;&#20110;4&#30340;&#21069;&#20960;&#20010;&#23383; </font>
+    </p>
+    <p>
+      <font color="#006666">&#33410;&#37117;&#26159;&#21487;&#33021;&#30340;&#65292;&#25152;&#20197;&#19968;&#24459;&#29992;receivedPrefixBytesDoneCount&lt;4&#26469;&#21028;&#26029;&#26159;&#21542;&#24050;&#32463;&#32463;&#36807;&#22788;&#29702;</font>&#65292;&#22788;&#29702;&#21518;&#65281;&#35813;&#23383;&#27573;
+    </p>
+    <p>
+      receivedPrefixBytesDoneCount&#24517;&#23450;&#20250;&#35774;&#32622;&#20026;4&#65281;&#65281;&#65281;
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node CREATED="1421377582674" ID="ID_1426223186" MODIFIED="1421377603132" TEXT="PrefixHandler.HandlePrefix">
+<node CREATED="1421377604514" ID="ID_1965588804" MODIFIED="1421377636980" TEXT="&#x5206;&#x6790;&#x51fa;&#x8be5;&#x6d88;&#x606f;&#x4f53;&#x7684;&#x957f;&#x5ea6;&#x4fe1;&#x606f;&#xff0c;&#x652f;&#x6301;&#x5206;&#x6279;&#x6b21;&#x5230;&#x8fbe;&#x7684;&#x6d88;&#x606f;&#x7684;&#x60c5;&#x51b5;"/>
+<node CREATED="1421377657282" ID="ID_852834222" MODIFIED="1421377663019" TEXT="receivedPrefixBytesDoneCount = 0">
+<node CREATED="1421377744882" ID="ID_1476639710" MODIFIED="1421387778728" TEXT="&#x5728;DataHolderUserToken&#x4e2d;&#x5206;&#x914d;&#x7528;&#x4e8e;&#x4fdd;&#x5b58;&#x6d88;&#x606f;&#x957f;&#x5ea6;&#x4fe1;&#x606f;&#x7684;&#x5b57;&#x8282;&#x6570;&#x7ec4;byte[4] -- byteArrayForPrefix">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font color="#006600">//receivedPrefixBytesDoneCount tells us how many prefix bytes were </font>
+    </p>
+    <p>
+      <font color="#006600">//processed during previous receive ops which contained data for </font>
+    </p>
+    <p>
+      <font color="#006600">//this message. Usually there will NOT have been any previous </font>
+    </p>
+    <p>
+      <font color="#006600">//receive ops here. So in that case, </font>
+    </p>
+    <p>
+      <font color="#006600">//receiveSendToken.receivedPrefixBytesDoneCount would equal 0. </font>
+    </p>
+    <p>
+      <font color="#006600">//Create a byte array to put the new prefix in, if we have not </font>
+    </p>
+    <p>
+      <font color="#006600">//already done it in a previous loop.</font>
+    </p>
+    <p>
+      if (receiveSendToken.receivedPrefixBytesDoneCount == 0)
+    </p>
+    <p>
+      {
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;<font color="#0000cc">receiveSendToken.<b>byteArrayForPrefix</b>&#160;= new Byte[receiveSendToken.receivePrefixLength];</font>
+    </p>
+    <p>
+      }
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node CREATED="1421377665202" ID="ID_1163545478" MODIFIED="1421389469817" TEXT="receivedPrefixBytesDoneCount&gt;0 but &#x5c0f;&#x4e8e; this.socketListenerSettings.ReceivePrefixLength(&#x4e00;&#x822c;&#x4e3a;4)"/>
+<node CREATED="1421389226018" ID="ID_332680742" MODIFIED="1421389260309" TEXT="transferDataLen">
+<node CREATED="1421389310626" ID="ID_247709186" MODIFIED="1421389354325" TEXT="1&#x3001;&#x8fd8;&#x5dee;&#x591a;&#x5c11;&#x5b57;&#x8282;&#x8865;&#x9f50;PrefixData&#xff1a;diff = ReceivePrefixLength - receivedPrefixBytesDoneCount"/>
+<node CREATED="1421389691523" ID="ID_1072178843" MODIFIED="1421391325391" TEXT="2&#x3001;&#x6839;&#x636e;diff&#x6bd4;&#x8f83;&#x8fdb;&#x5165;&#x4e0d;&#x540c;&#x5904;&#x7406;">
+<node CREATED="1421389241842" ID="ID_1886798920" MODIFIED="1421389709928" TEXT="transferDataLen &gt; =  diff">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font color="#006600">// If this next if-statement is true, then we have received &gt;= enough bytes to have the prefix. So we can determine the length of the message that we are working on. </font>
+    </p>
+    <p>
+      <font color="#006600">// &#27880;&#24847;&#65306;remainingBytesToProcess&#26159;&#26412;&#27425;&#28040;&#24687;&#25910;&#21040;&#30340;&#25152;&#26377;&#23383;&#33410;&#25968; </font>
+    </p>
+    <p>
+      <font color="#006600">//&#160;&#160;&#160;&#160;&#160;&#160;&#160;<b>receiveSendToken.receiveMessageOffset = buff.OffSet+</b></font><b><font color="#006666">receivePrefixLength</font><font color="#006600">&#160;&#36825;&#26159;&#20854;&#21021;&#22987;&#21270;&#20540;</font></b>
+    </p>
+    <p>
+      <font color="#006600">//&#160;&#160;&#160;&#160;&#160;&#160; receivedPrefixBytesDoneCount&#65306;&#19978;&#27425;&#28040;&#24687;&#20013;&#24050;&#22788;&#29702;&#30340;Prefix&#23383;&#33410;&#25968;&#65292;&#35813;Prefix&#29992;&#26469;&#30830;&#23450;&#26412;&#28040;&#24687;&#30495;&#23454;&#25968;&#25454;&#30340;&#38271;&#24230;</font>
+    </p>
+    <p>
+      if (remainingBytesToProcess &gt;= receiveSendToken.receivePrefixLength - receiveSendToken.receivedPrefixBytesDoneCount)
+    </p>
+    <p>
+      {
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;if (Program.watchProgramFlow == true)&#160;&#160;&#160;//for testing
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;{
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Program.testWriter.WriteLine(&quot;PrefixHandler, enough for prefix &quot; + receiveSendToken.TokenId + &quot;. remainingBytesToProcess = &quot; + remainingBytesToProcess);
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;}
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;<font color="#006600">//Now copy that many bytes to byteArrayForPrefix. </font>
+    </p>
+    <p>
+      <font color="#006600">&#160;&#160;&#160;&#160;//We can use the variable receiveMessageOffset as our main </font>
+    </p>
+    <p>
+      <font color="#006600">&#160;&#160;&#160;&#160;//index to show which index to get data from in the TCP </font>
+    </p>
+    <p>
+      <font color="#006600">&#160;&#160;&#160;&#160;//buffer.</font>
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;Buffer.BlockCopy(e.Buffer, receiveSendToken.receiveMessageOffset - receiveSendToken.receivePrefixLength + receiveSendToken.receivedPrefixBytesDoneCount, receiveSendToken.byteArrayForPrefix, receiveSendToken.receivedPrefixBytesDoneCount, receiveSendToken.receivePrefixLength - receiveSendToken.receivedPrefixBytesDoneCount);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;remainingBytesToProcess = remainingBytesToProcess - receiveSendToken.receivePrefixLength + receiveSendToken.receivedPrefixBytesDoneCount;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;receiveSendToken.recPrefixBytesDoneThisOp = receiveSendToken.receivePrefixLength - receiveSendToken.receivedPrefixBytesDoneCount;
+    </p>
+    <p>
+      &#160;&#160;&#160;
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;<font color="#006600">//&#27491;&#30830;&#22788;&#29702;&#21518;&#65292;&#19968;&#23450;&#20250;&#22312;&#27492;&#20462;&#27491;PrefixDoneCount&#20540;</font>
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;receiveSendToken.receivedPrefixBytesDoneCount = receiveSendToken.receivePrefixLength;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;<font color="#ff3300"><b>receiveSendToken.</b></font><b><font color="#006666">lengthOfCurrentIncomingMessage</font><font color="#ff3300">&#160; = BitConverter.ToInt32(receiveSendToken.</font><font color="#006666">byteArrayForPrefix</font><font color="#ff3300">, 0);</font></b>
+    </p>
+    <p>
+      }
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1421389384578" ID="ID_1463035014" MODIFIED="1421389709938" TEXT="transferDataLen &lt; diff">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font color="#006600">//This next else-statement deals with the situation </font>
+    </p>
+    <p>
+      <font color="#006600">//where we have some bytes </font>
+    </p>
+    <p>
+      <font color="#006600">//of this prefix in this receive operation, but not all.</font>
+    </p>
+    <p>
+      else
+    </p>
+    <p>
+      {
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;if (Program.watchProgramFlow == true)&#160;&#160;&#160;//for testing
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;{
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Program.testWriter.WriteLine(&quot;PrefixHandler, NOT all of prefix &quot; + receiveSendToken.TokenId + &quot;. remainingBytesToProcess = &quot; + remainingBytesToProcess);
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;}
+    </p>
+    <p>
+      &#160;&#160;&#160;<font color="#006600">&#160;//Write the bytes to the array where we are putting the </font>
+    </p>
+    <p>
+      <font color="#006600">&#160;&#160;&#160;&#160;//prefix data, to save for the next loop.</font>
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;Buffer.BlockCopy(e.Buffer, receiveSendToken.receiveMessageOffset - receiveSendToken.receivePrefixLength + receiveSendToken.receivedPrefixBytesDoneCount, receiveSendToken.byteArrayForPrefix, receiveSendToken.receivedPrefixBytesDoneCount, remainingBytesToProcess);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;receiveSendToken.recPrefixBytesDoneThisOp = remainingBytesToProcess;
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;receiveSendToken.receivedPrefixBytesDoneCount += remainingBytesToProcess;
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;<font color="#0000cc">remainingBytesToProcess = 0;</font>
+    </p>
+    <p>
+      }
+    </p>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1421389729650" ID="ID_1249254789" MODIFIED="1421389757453" TEXT="&#x5373;&#x672c;&#x6b21;&#x63a5;&#x6536;&#x6570;&#x636e;&#x8fd8;&#x662f;&#x4e0d;&#x8db3;&#x4ee5;&#x51d1;&#x9f50;prifix&#x4fe1;&#x606f;&#xff0c;&#x65e5;&#x4e86;&#xff0c;&#x5e94;&#x8be5;&#x5f88;&#x5c11;&#x89c1;"/>
+</node>
+</node>
+<node BACKGROUND_COLOR="#ffff00" CREATED="1421389931747" ID="ID_1637237869" MODIFIED="1421390903192" TEXT="3&#x3001;&#x9488;&#x5bf9;recPrefixBytesDoneThisOp&#x7684;&#x3010;&#x5f52;&#x96f6;&#x3011;&#x4fee;&#x6b63;">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font color="#006600">// This section is needed when we have received </font>
+    </p>
+    <p>
+      <font color="#006600">// an amount of data exactly equal to the amount needed for the prefix, </font>
+    </p>
+    <p>
+      <font color="#006600">// but no more. And also needed with the situation where we have received </font>
+    </p>
+    <p>
+      <font color="#006600">// less than the amount of data needed for prefix.</font>
+    </p>
+    <p>
+      if (remainingBytesToProcess == 0)
+    </p>
+    <p>
+      {
+    </p>
+    <p>
+      &#160;&#160;&#160;<font color="#006600">&#160;//&#36825;&#37324;<b>&#24517;&#39035;&#20462;&#27491;receiveMessageOffset</b>,&#21542;&#21017;&#20250;&#23548;&#33268;&#30495;&#27491;&#28040;&#24687;&#20307;&#25968;&#25454;&#32570;&#20102;1~4&#20010;&#23383;&#33410;&#19981;&#31561; </font>
+    </p>
+    <p>
+      <font color="#006600">&#160;&#160;&#160;&#160;//</font><font color="#006666">recPrefixBytesDoneThisOp&#23383;&#27573;&#30340;&#24847;&#20041;&#23601;&#22312;&#27492;&#65292;&#29992;&#20110;&#20462;&#27491;&#36825;&#31181;&#24773;&#20917;</font>
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;receiveSendToken.receiveMessageOffset = receiveSendToken.receiveMessageOffset - receiveSendToken.recPrefixBytesDoneThisOp;
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;receiveSendToken.recPrefixBytesDoneThisOp = 0;
+    </p>
+    <p>
+      }
+    </p>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1421389954403" ID="ID_1290504406" MODIFIED="1421391327675" TEXT="&#x5b9e;&#x9645;&#x51fa;&#x73b0;&#x53ea;&#x51fa;&#x73b0;&#x5728; transferDataLen &lt;= diff">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      &#26368;&#32456;&#20250;&#39532;&#19978;&#35302;&#21457;&#19979;&#27425;StartReceive()&#65292;&#32780;&#19981;&#20250;&#36827;&#20837;Messagehandle&#27969;&#31243;
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1421391458099" ID="ID_1553518864" MODIFIED="1421398964878" TEXT="MessageHandler.HandleMessage">
+<node CREATED="1421393533459" ID="ID_52825646" MODIFIED="1421393545932" TEXT="event trigger">
+<node CREATED="1421393547186" ID="ID_761806973" MODIFIED="1421393581373" TEXT="StartSend [&#x5206;&#x6279;&#x6b21;&#x53d1;&#x9001;&#x8fd4;&#x56de;&#x6570;&#x636e;&#xff0c;&#x4e0d;&#x9650;&#x5927;&#x5c0f;]">
+<node CREATED="1421398593379" ID="ID_1689615514" MODIFIED="1421398966868" TEXT=""/>
+</node>
+<node CREATED="1421393554627" ID="ID_1655683272" MODIFIED="1421393600886" TEXT="StartReceive[&#x53d1;&#x9001;&#x8fd4;&#x56de;&#x6570;&#x636e;&#x5b8c;&#x6bd5;&#xff0c;&#x8fdb;&#x5165;&#x4e0b;&#x6b21;&#x6570;&#x636e;&#x63a5;&#x6536;]"/>
+</node>
 </node>
 </node>
 </node>
