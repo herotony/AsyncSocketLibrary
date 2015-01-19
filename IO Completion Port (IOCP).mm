@@ -181,7 +181,7 @@
 <node CREATED="1421287162400" ID="ID_1821628362" MODIFIED="1421300563555" TEXT="m_crrentIndex&#xff1a;&#x5b9e;&#x9645;&#x5206;&#x914d;&#x5185;&#x5b58;&#x7684;&#x4f9d;&#x636e;&#xff0c;&#x5373;&#x6bcf;&#x4e2a;&#x5185;&#x5b58;&#x5757;&#x7684;&#x8d77;&#x59cb;&#x70b9;&#xff1a;Offset"/>
 </node>
 </node>
-<node CREATED="1421304356449" ID="ID_108828467" MODIFIED="1421304376339" TEXT="SocketAsyncServer">
+<node CREATED="1421304356449" FOLDED="true" ID="ID_108828467" MODIFIED="1421647647590" TEXT="SocketAsyncServer">
 <node CREATED="1421305116129" ID="ID_234611571" LINK="https://gist.github.com/herotony/7b855fc07239d77fc8a1/#file-socketasyncserver_program-cs" MODIFIED="1421306720888" TEXT="Program">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -402,8 +402,7 @@
       
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1421305810209" ID="ID_1942508174" LINK="https://gist.github.com/herotony/7b855fc07239d77fc8a1/#file-socketasyncserver_socketlistener-cs" MODIFIED="1421306566623" TEXT="2&#x3001;SocketListener">
 <node CREATED="1421306685201" ID="ID_724099088" MODIFIED="1421306687986" TEXT="invoke">
@@ -435,8 +434,7 @@
       &#160;&#160;&#160;&#160;this.theBufferManager.InitBuffer();
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1421374012626" ID="ID_1270555274" MODIFIED="1421374505595" TEXT="2&#x3001;&#x521d;&#x59cb;&#x5316;&#x5904;&#x7406;&#x63a5;&#x6536;&#x8fde;&#x63a5;&#x8bf7;&#x6c42;&#x7684;saea&#xff0c;&#x4e0d;&#x662f;&#x591a;&#x91cd;&#x8981;&#x7684;&#xff0c;&#x6700;&#x591a;10&#x4e2a;">
 <richcontent TYPE="NOTE"><html>
@@ -469,8 +467,7 @@
       &#35813;saea&#26080;&#38656;&#20219;&#20309;buffer&#65292;&#22240;&#20854;&#19981;&#25509;&#25910;&#25110;&#21457;&#36865;&#25968;&#25454;&#21482;&#26159;&#20256;&#36882;acceptsocket&#32780;&#24050;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node BACKGROUND_COLOR="#ffff00" CREATED="1421374156913" ID="ID_997545620" MODIFIED="1421374559498" TEXT="3&#x3001;&#x6700;&#x5173;&#x952e;&#x7684;&#xff0c;&#x5b9e;&#x4f8b;&#x5316;maxconnection+extrasaeanumber&#x4e2a;saea&#x5b9e;&#x4f8b;&#x5e76;&#x8bbe;&#x7f6e;&#x76f8;&#x5e94;&#x7684;buffer&#x4f4d;&#x7f6e;&#x548c;usertoken">
 <richcontent TYPE="NOTE"><html>
@@ -593,8 +590,7 @@
       }
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1421306967793" ID="ID_1191584512" MODIFIED="1421309153663" TEXT="7&#x3001;StartListen()">
@@ -938,7 +934,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1421375225442" ID="ID_1325708480" MODIFIED="1421375237779" TEXT="event trigger">
+<node CREATED="1421375225442" FOLDED="true" ID="ID_1325708480" MODIFIED="1421647361974" TEXT="event trigger">
 <node CREATED="1421375209442" ID="ID_1030375100" MODIFIED="1421398576654" TEXT="ProcessReceive">
 <node COLOR="#993300" CREATED="1421376060962" ID="ID_311178034" MODIFIED="1421376100075" TEXT="&#x652f;&#x6301;&#x4e86;&#x4e00;&#x6761;&#x6d88;&#x606f;&#x53d1;&#x9001;&#x540e;&#xff0c;&#x5230;&#x670d;&#x52a1;&#x5668;&#x53ef;&#x80fd;&#x4f1a;&#x53d8;&#x6210;&#x5206;&#x51e0;&#x6b21;&#x63a5;&#x6536;&#x7684;&#x5904;&#x7406;&#x903b;&#x8f91;"/>
 <node CREATED="1421376136754" ID="ID_1874566087" MODIFIED="1421376143459" TEXT="DataHoldingUserToken">
@@ -961,8 +957,7 @@
       receivedPrefixBytesDoneCount&#24517;&#23450;&#20250;&#35774;&#32622;&#20026;4&#65281;&#65281;&#65281;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1421377582674" ID="ID_1426223186" MODIFIED="1421377603132" TEXT="PrefixHandler.HandlePrefix">
@@ -1008,8 +1003,7 @@
       }
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1421377665202" ID="ID_1163545478" MODIFIED="1421389469817" TEXT="receivedPrefixBytesDoneCount&gt;0 but &#x5c0f;&#x4e8e; this.socketListenerSettings.ReceivePrefixLength(&#x4e00;&#x822c;&#x4e3a;4)"/>
@@ -1158,8 +1152,7 @@
       }
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1421389729650" ID="ID_1249254789" MODIFIED="1421389757453" TEXT="&#x5373;&#x672c;&#x6b21;&#x63a5;&#x6536;&#x6570;&#x636e;&#x8fd8;&#x662f;&#x4e0d;&#x8db3;&#x4ee5;&#x51d1;&#x9f50;prifix&#x4fe1;&#x606f;&#xff0c;&#x65e5;&#x4e86;&#xff0c;&#x5e94;&#x8be5;&#x5f88;&#x5c11;&#x89c1;"/>
 </node>
 </node>
@@ -1203,8 +1196,7 @@
       }
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1421389954403" ID="ID_1290504406" MODIFIED="1421391327675" TEXT="&#x5b9e;&#x9645;&#x51fa;&#x73b0;&#x53ea;&#x51fa;&#x73b0;&#x5728; transferDataLen &lt;= diff">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -1215,8 +1207,7 @@
       &#26368;&#32456;&#20250;&#39532;&#19978;&#35302;&#21457;&#19979;&#27425;StartReceive()&#65292;&#32780;&#19981;&#20250;&#36827;&#20837;Messagehandle&#27969;&#31243;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
@@ -1238,6 +1229,12 @@
 </node>
 </node>
 <node CREATED="1421304410049" ID="ID_1627247667" MODIFIED="1421304424899" TEXT="SocketClientAsyncTester"/>
+<node CREATED="1421647654509" ID="ID_1447374109" MODIFIED="1421647659902" TEXT="&#x884d;&#x751f;&#x4fee;&#x6539;">
+<node CREATED="1421647661100" ID="ID_660558433" MODIFIED="1421647663318" TEXT="Server">
+<node CREATED="1421647675467" ID="ID_122445270" MODIFIED="1421647758165" TEXT="OutgoingDataPrepare&#x65b9;&#x6cd5;&#xff0c;&#x7528;&#x6765;&#x5904;&#x7406;&#x63a5;&#x6536;&#x5230;&#x7684;&#x6570;&#x636e;&#x5e76;&#x6253;&#x5305;&#x8fd4;&#x56de;&#x6570;&#x636e;"/>
+</node>
+<node CREATED="1421647664155" ID="ID_1297850393" MODIFIED="1421647666420" TEXT="Client"/>
+</node>
 </node>
 </node>
 </node>

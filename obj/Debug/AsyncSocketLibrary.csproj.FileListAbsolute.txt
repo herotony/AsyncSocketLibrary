@@ -1,0 +1,13 @@
+D:\HeroTonyGitHub\AsyncSocketLibrary\AsyncSocketLibrary\bin\Debug\AsyncSocketLibrary.dll
+D:\HeroTonyGitHub\AsyncSocketLibrary\AsyncSocketLibrary\bin\Debug\AsyncSocketLibrary.pdb
+D:\HeroTonyGitHub\AsyncSocketLibrary\AsyncSocketLibrary\bin\Debug\log4net.dll
+D:\HeroTonyGitHub\AsyncSocketLibrary\AsyncSocketLibrary\bin\Debug\mscorlib.dll
+D:\HeroTonyGitHub\AsyncSocketLibrary\AsyncSocketLibrary\bin\Debug\zh-Hans\mscorlib.resources.dll
+D:\HeroTonyGitHub\AsyncSocketLibrary\AsyncSocketLibrary\bin\Debug\normidna.nlp
+D:\HeroTonyGitHub\AsyncSocketLibrary\AsyncSocketLibrary\bin\Debug\normnfc.nlp
+D:\HeroTonyGitHub\AsyncSocketLibrary\AsyncSocketLibrary\bin\Debug\normnfd.nlp
+D:\HeroTonyGitHub\AsyncSocketLibrary\AsyncSocketLibrary\bin\Debug\normnfkc.nlp
+D:\HeroTonyGitHub\AsyncSocketLibrary\AsyncSocketLibrary\bin\Debug\normnfkd.nlp
+D:\HeroTonyGitHub\AsyncSocketLibrary\AsyncSocketLibrary\obj\Debug\AsyncSocketLibrary.csprojResolveAssemblyReference.cache
+D:\HeroTonyGitHub\AsyncSocketLibrary\AsyncSocketLibrary\obj\Debug\AsyncSocketLibrary.dll
+D:\HeroTonyGitHub\AsyncSocketLibrary\AsyncSocketLibrary\obj\Debug\AsyncSocketLibrary.pdb
