@@ -47,9 +47,6 @@
     <Compile Include="Common\MessageHandler.cs" />
     <Compile Include="Common\DataHolder.cs" />
     <Compile Include="Common\DataHoldingUserToken.cs" />
-    <Compile Include="Common\IncomingDataPreparer.cs" />
-    <Compile Include="Common\Mediator.cs" />
-    <Compile Include="Common\OutgoingDataPreparer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
