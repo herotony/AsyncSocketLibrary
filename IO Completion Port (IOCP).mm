@@ -11,8 +11,8 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1421203644977" FOLDED="true" ID="ID_861298209" LINK="http://www.codeproject.com/Articles/1052/Developing-a-Truly-Scalable-Winsock-Server-using-I" MODIFIED="1421285189475" POSITION="right" TEXT="IOCP&#x9610;&#x8ff0;&#x6587;&#x7ae0;&#x4e00;[c++&#x7248;]">
-<node CREATED="1421203673141" FOLDED="true" ID="ID_916500432" MODIFIED="1421224709337" TEXT="&#x8bf4;&#x660e;&#x56fe;&#x793a;">
+<node CREATED="1421203644977" ID="ID_861298209" LINK="http://www.codeproject.com/Articles/1052/Developing-a-Truly-Scalable-Winsock-Server-using-I" MODIFIED="1421908605791" POSITION="right" TEXT="IOCP&#x9610;&#x8ff0;&#x6587;&#x7ae0;&#x4e00;[c++&#x7248;]">
+<node CREATED="1421203673141" FOLDED="true" ID="ID_916500432" MODIFIED="1422341773440" TEXT="&#x8bf4;&#x660e;&#x56fe;&#x793a;">
 <node CREATED="1421221255239" ID="ID_771791791" MODIFIED="1421221262841">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -24,7 +24,7 @@
 </html></richcontent>
 </node>
 </node>
-<node CREATED="1421203841862" ID="ID_1778496822" LINK="http://msdn.microsoft.com/en-us/library/aa365198%28VS.85%29.aspx" MODIFIED="1421222925440" TEXT="&#x5fae;&#x8f6f;&#x5b98;&#x65b9;&#x4ecb;&#x7ecd;">
+<node CREATED="1421203841862" FOLDED="true" ID="ID_1778496822" LINK="http://msdn.microsoft.com/en-us/library/aa365198%28VS.85%29.aspx" MODIFIED="1422341770657" TEXT="&#x5fae;&#x8f6f;&#x5b98;&#x65b9;&#x4ecb;&#x7ecd;">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -160,8 +160,9 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1421285165055" ID="ID_1574155174" LINK="http://www.codeproject.com/Articles/83102/C-SocketAsyncEventArgs-High-Performance-Socket-Cod" MODIFIED="1421285196371" TEXT="codeproject &#x793a;&#x4f8b;&#x6587;&#x7ae0;">
-<node CREATED="1421304342913" FOLDED="true" ID="ID_663482712" MODIFIED="1421308174236" TEXT="msdn&#x5b98;&#x65b9;&#x793a;&#x4f8b;">
+<node CREATED="1421285165055" ID="ID_1574155174" LINK="http://www.codeproject.com/Articles/83102/C-SocketAsyncEventArgs-High-Performance-Socket-Cod" MODIFIED="1422342469300" TEXT="codeproject &#x793a;&#x4f8b;&#x6587;&#x7ae0;">
+<node CREATED="1422342470526" FOLDED="true" ID="ID_1495555656" MODIFIED="1422342520089" TEXT="before 20160127">
+<node CREATED="1421304342913" FOLDED="true" ID="ID_663482712" MODIFIED="1422342493888" TEXT="msdn&#x5b98;&#x65b9;&#x793a;&#x4f8b;">
 <node CREATED="1421286013056" ID="ID_1131225734" LINK="https://gist.github.com/herotony/7b855fc07239d77fc8a1/#file-saea_msdn_sample_buffermanager-cs" MODIFIED="1421286322732" TEXT="BufferManager">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -181,8 +182,8 @@
 <node CREATED="1421287162400" ID="ID_1821628362" MODIFIED="1421300563555" TEXT="m_crrentIndex&#xff1a;&#x5b9e;&#x9645;&#x5206;&#x914d;&#x5185;&#x5b58;&#x7684;&#x4f9d;&#x636e;&#xff0c;&#x5373;&#x6bcf;&#x4e2a;&#x5185;&#x5b58;&#x5757;&#x7684;&#x8d77;&#x59cb;&#x70b9;&#xff1a;Offset"/>
 </node>
 </node>
-<node CREATED="1421304356449" FOLDED="true" ID="ID_108828467" MODIFIED="1421647647590" TEXT="SocketAsyncServer">
-<node CREATED="1421305116129" ID="ID_234611571" LINK="https://gist.github.com/herotony/7b855fc07239d77fc8a1/#file-socketasyncserver_program-cs" MODIFIED="1421306720888" TEXT="Program">
+<node CREATED="1421304356449" ID="ID_108828467" MODIFIED="1422342498629" TEXT="SocketAsyncServer">
+<node CREATED="1421305116129" ID="ID_234611571" LINK="https://gist.github.com/herotony/7b855fc07239d77fc8a1/#file-socketasyncserver_program-cs" MODIFIED="1422342450853" TEXT="Program">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -405,7 +406,7 @@
 </html></richcontent>
 </node>
 <node CREATED="1421305810209" ID="ID_1942508174" LINK="https://gist.github.com/herotony/7b855fc07239d77fc8a1/#file-socketasyncserver_socketlistener-cs" MODIFIED="1421306566623" TEXT="2&#x3001;SocketListener">
-<node CREATED="1421306685201" ID="ID_724099088" MODIFIED="1421306687986" TEXT="invoke">
+<node CREATED="1421306685201" FOLDED="true" ID="ID_724099088" MODIFIED="1422342458601" TEXT="invoke">
 <node CREATED="1421306852609" ID="ID_572130378" MODIFIED="1421306882626" TEXT="cotr : SocketListenerSettings"/>
 <node CREATED="1421306828257" ID="ID_1823620143" LINK="https://gist.github.com/herotony/7b855fc07239d77fc8a1/#file-socketasyncserver_prefixhandler-cs" MODIFIED="1421308115450" TEXT="1&#x3001;PrefixHandler">
 <node CREATED="1421307903201" ID="ID_1082856925" LINK="https://gist.github.com/herotony/7b855fc07239d77fc8a1/#file-socketasyncserver_dataholdingusertoken-cs" MODIFIED="1421308297426" TEXT="DataHoldingUserToken">
@@ -934,7 +935,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1421375225442" FOLDED="true" ID="ID_1325708480" MODIFIED="1421647361974" TEXT="event trigger">
+<node CREATED="1421375225442" FOLDED="true" ID="ID_1325708480" MODIFIED="1422341859257" TEXT="event trigger">
 <node CREATED="1421375209442" ID="ID_1030375100" MODIFIED="1421398576654" TEXT="ProcessReceive">
 <node COLOR="#993300" CREATED="1421376060962" ID="ID_311178034" MODIFIED="1421376100075" TEXT="&#x652f;&#x6301;&#x4e86;&#x4e00;&#x6761;&#x6d88;&#x606f;&#x53d1;&#x9001;&#x540e;&#xff0c;&#x5230;&#x670d;&#x52a1;&#x5668;&#x53ef;&#x80fd;&#x4f1a;&#x53d8;&#x6210;&#x5206;&#x51e0;&#x6b21;&#x63a5;&#x6536;&#x7684;&#x5904;&#x7406;&#x903b;&#x8f91;"/>
 <node CREATED="1421376136754" ID="ID_1874566087" MODIFIED="1421376143459" TEXT="DataHoldingUserToken">
@@ -1228,12 +1229,390 @@
 </node>
 </node>
 </node>
-<node CREATED="1421304410049" ID="ID_1627247667" MODIFIED="1421304424899" TEXT="SocketClientAsyncTester"/>
-<node CREATED="1421647654509" ID="ID_1447374109" MODIFIED="1421647659902" TEXT="&#x884d;&#x751f;&#x4fee;&#x6539;">
+<node CREATED="1421304410049" ID="ID_1627247667" MODIFIED="1422342500847" TEXT="SocketClientAsyncTester"/>
+<node CREATED="1421647654509" FOLDED="true" ID="ID_1447374109" MODIFIED="1422342508400" TEXT="&#x884d;&#x751f;&#x4fee;&#x6539;">
 <node CREATED="1421647661100" ID="ID_660558433" MODIFIED="1421647663318" TEXT="Server">
 <node CREATED="1421647675467" ID="ID_122445270" MODIFIED="1421647758165" TEXT="OutgoingDataPrepare&#x65b9;&#x6cd5;&#xff0c;&#x7528;&#x6765;&#x5904;&#x7406;&#x63a5;&#x6536;&#x5230;&#x7684;&#x6570;&#x636e;&#x5e76;&#x6253;&#x5305;&#x8fd4;&#x56de;&#x6570;&#x636e;"/>
 </node>
 <node CREATED="1421647664155" ID="ID_1297850393" MODIFIED="1421647666420" TEXT="Client"/>
+</node>
+<node CREATED="1421908790732" FOLDED="true" ID="ID_1258657962" MODIFIED="1422342509704" TEXT="&#x70b9;&#x6ef4;&#x8bb0;&#x5f55;&#x800c;&#x5df2;">
+<node CREATED="1421908804748" ID="ID_192864375" MODIFIED="1422325799370" TEXT="client">
+<node CREATED="1421908819629" FOLDED="true" ID="ID_1764025178" MODIFIED="1422342433097" TEXT="socketclient  (&#x5bf9;&#x5e94;&#x7684;socketlistener)">
+<node CREATED="1421912527996" ID="ID_438149699" MODIFIED="1421915698962" TEXT="Init">
+<node CREATED="1421911959437" FOLDED="true" ID="ID_831707553" MODIFIED="1422325809007" TEXT="&#x72ec;&#x7acb;&#x7684;&#x4e13;&#x7528;&#x4e8e;&#x5904;&#x7406;&#x8fde;&#x63a5;&#x7684;saea&#x6c60;">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font color="#009933">// This method is called when we need to create a new SAEA object to do </font>
+    </p>
+    <p>
+      <font color="#009933">//connect operations. The reason to put it in a separate method is so that </font>
+    </p>
+    <p>
+      <font color="#009933">//we can easily add more objects to the pool if we need to. </font>
+    </p>
+    <p>
+      <font color="#009933">//You can do that if you do NOT use a buffer in the SAEA object that does </font>
+    </p>
+    <p>
+      <font color="#009933">//the connect operations.</font>
+    </p>
+    <p>
+      private SocketAsyncEventArgs CreateNewSaeaForConnect(SocketAsyncEventArgsPool <font color="#9933ff">pool</font>)
+    </p>
+    <p>
+      {
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;<font color="#009933">//Allocate the SocketAsyncEventArgs object.</font>
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;SocketAsyncEventArgs connectEventArg = new SocketAsyncEventArgs();
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      <font color="#009933">&#160;&#160;&#160;&#160;//Attach the event handler.&#160;&#160;Since we'll be using this </font>
+    </p>
+    <p>
+      <font color="#009933">&#160;&#160;&#160;&#160;//SocketAsyncEventArgs object to process connect ops, </font>
+    </p>
+    <p>
+      <font color="#009933">&#160;&#160;&#160;&#160;//what this does is cause the calling of the ConnectEventArg_Completed </font>
+    </p>
+    <p>
+      <font color="#009933">&#160;&#160;&#160;&#160;//object when the connect op completes.</font>
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;connectEventArg.Completed += new EventHandler&lt;SocketAsyncEventArgs&gt;(IO_Completed);
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;ConnectOpUserToken theConnectingToken = new ConnectOpUserToken(<font color="#9933ff">pool</font>.AssignTokenId() + 10000);
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;connectEventArg.<font color="#9933ff">UserToken</font>&#160;= theConnectingToken;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;return connectEventArg;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;<font color="#006666">//You may wonder about the buffer of this object. If you </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//decide to use objects from one pool to do connect operations, and </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//a separate pool of SAEA objects to do send/receive, then </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//there is NO NEED to assign a buffer to this SAEA object for connects. </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//But, if you want to </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//use this SAEA object to do connect, send, receive, and disconnect, </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//then you will need a buffer for this object. </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//Working with the buffer is different in the client vs the server, due </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//to the way that ConnectAsync works. </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//You would need to think about whether to do the initial call of </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//BufferManager.SetBuffer here, or do it in ProcessConnect method. </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//If a SocketAsyncEventArg object has a buffer already set before </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//the ConnectAsync method is called, then the contents of the buffer will </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//be sent immediately upon connecting, without your calling StartSend(). </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//Read that sentence again. </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//So you could only call BufferManager.SetBuffer here if you are sure the </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//client will always do a send operation first, and the data will be </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//ready when the connection is made. If you want to have the </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//option of doing a receive operation first, then wait and set the buffer </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//after the connect operation completes. </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//If you decide to use that design, then you will need to call the </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//BufferManager's FreeBuffer method, to </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//null the buffer again before putting it back in the pool. FreeBuffer would </font>
+    </p>
+    <p>
+      <font color="#006666">&#160;&#160;&#160;&#160;//probably need to be called in the ProcessDisconnectAndCloseSocket method.</font>
+    </p>
+    <p>
+      }
+    </p>
+  </body>
+</html></richcontent>
+<node CREATED="1421912228013" ID="ID_1739170605" MODIFIED="1421912242772" TEXT="&#x7531;&#x4e8e;&#x53ea;&#x662f;&#x7528;&#x4e8e;&#x8fde;&#x63a5;&#xff0c;&#x8be5;saea&#x65e0;&#x9700;buffer"/>
+<node CREATED="1421912292237" ID="ID_799722180" MODIFIED="1421912333796" TEXT="&#x8fd8;&#x6709;&#x4e00;&#x5c42;&#x8003;&#x8651;&#xff0c;&#x4e0d;&#x8bbe;buffer&#xff0c;&#x7531;&#x53e6;&#x5916;&#x7684;saea&#x5904;&#x7406;&#xff0c;&#x786e;&#x4fdd;connect&#x5efa;&#x7acb;&#x65f6;&#x81ea;&#x52a8;&#x89e6;&#x53d1;&#x53d1;&#x9001;&#x6570;&#x636e;&#x64cd;&#x4f5c;!"/>
+</node>
+<node CREATED="1421912573901" ID="ID_1856490967" MODIFIED="1421912647845" TEXT="&#x540c;&#x6837;&#x4e3a;&#x591a;&#x4e2a;rec/send saea &#x8bbe;&#x7f6e;&#x4e00;&#x4e2a;&#x5de8;&#x5927;&#x8fde;&#x7eed;&#x7684;&#x5185;&#x5b58;&#x5757;&#xff1a;bufferManager.InitBuffer"/>
+<node CREATED="1421912660381" FOLDED="true" ID="ID_1816765268" MODIFIED="1421915715759" TEXT="InitBuffer&#x540e;&#xff0c;&#x5219;&#x4e3a;&#x6bcf;&#x4e2a;rec/send saea&#x8bbe;&#x7f6e;&#x5bf9;&#x5e94;&#x7684;buffer">
+<node CREATED="1421914274285" ID="ID_1973869980" MODIFIED="1421914315483" TEXT="&#x8981;&#x6ce8;&#x610f;&#x7684;&#x662f;&#xff0c;connect&#x53ef;&#x4ee5;&#x6539;&#x52a8;&#x914d;&#x7f6e;&#x591a;&#x5c11;&#xff0c;rec/send&#x5219;&#x4e0d;&#x80fd;&#x6539;&#x53d8;&#xff0c;&#x5426;&#x5219;&#x5bf9;&#x5e94;&#x7684;buffer&#x5e76;&#x4e0d;&#x5b58;&#x5728;"/>
+</node>
+</node>
+<node CREATED="1421915801437" ID="ID_1171665679" MODIFIED="1421916125901" TEXT="CheckStack&#x662f;&#x8981;&#x63d0;&#x70bc;&#x51fa;&#x4e3a;public&#x7684;&#x90e8;&#x5206;">
+<node CREATED="1421916127661" ID="ID_1962069452" MODIFIED="1421916141317" TEXT="StartConnect -&gt; Connect">
+<node COLOR="#cc3300" CREATED="1421916373885" ID="ID_1600059226" MODIFIED="1421916433460" TEXT="&#x5173;&#x952e;&#x70b9;&#xff0c;Connect&#x7684;userToken&#x91cc;&#x4e8b;&#x5148;&#x5199;&#x5165;&#x5f85;&#x53d1;&#x9001;&#x6570;&#x636e;&#xff0c;&#x8fd9;&#x4e2a;&#x4e0d;&#x540c;&#x4e8e;&#x6700;&#x7ec8;&#x8981;&#x53d1;&#x9001;saea&#x7684;buff"/>
+<node CREATED="1421916561437" ID="ID_257560606" MODIFIED="1421916597276" TEXT="PushMessageArray&#x662f;&#x8981;&#x4fee;&#x6539;&#x5904;&#xff0c;&#x8fd9;&#x91cc;&#x662f;&#x6d88;&#x606f;&#x4f20;&#x5165;&#x7684;&#x5bf9;&#x5916;&#x63a5;&#x53e3;&#xff0c;&#x5185;&#x90e8;&#x5219;&#x968f;&#x673a;&#x8c03;&#x7528;&#x76f8;&#x5173;saea&#x53bb;&#x8fde;&#x63a5;&#x548c;&#x53d1;&#x9001;&#xff01;"/>
+<node COLOR="#cc3300" CREATED="1421917033965" ID="ID_486560344" MODIFIED="1421917538996" TEXT="SharpRpc&#x7684;&#x5d4c;&#x5165;&#x5fc5;&#x987b;&#x5728;usertoken&#x4e2d;&#x8ffd;&#x52a0;&#x4e8b;&#x4ef6;&#x56de;&#x8c03;&#x673a;&#x5236;&#xff1f;&#x5982;&#x4f55;&#x505a;&#xff1f;&#x52a0;&#x5165;&#x67d0;&#x4e2a;id&#xff0c;&#x63a5;&#x6536;&#x8fd4;&#x56de;&#x6570;&#x636e;&#x5b8c;&#x6210;&#x65f6;&#xff0c;&#x76f4;&#x63a5;&#x6839;&#x636e;&#x8fd9;&#x4e2a;id&#x6765;&#x7ed9;&#x76f8;&#x5e94;&#x7684;&#x90e8;&#x5206;&#x56de;&#x4f20;&#x6570;&#x636e;&#xff1f;">
+<node COLOR="#cc3300" CREATED="1421917278477" ID="ID_1284530327" MODIFIED="1421917545515" TEXT="SocketClient&#x5fc5;&#x987b;&#x652f;&#x6301;&#x4e8b;&#x4ef6;&#x4f9b;&#x8ba2;&#x9605;&#xff0c;SharpRpc&#x8c03;&#x7528;&#x65b9;&#x53ef;&#x636e;&#x6b64;&#x53d6;&#x56de;&#x8fd4;&#x56de;&#x6570;&#x636e;&#xff01;"/>
+</node>
+</node>
+<node CREATED="1421916170333" ID="ID_500363261" MODIFIED="1421916176885" TEXT="StartSend -&gt; Send"/>
+</node>
+</node>
+</node>
+<node CREATED="1421908809309" FOLDED="true" ID="ID_723030934" MODIFIED="1422325545576" TEXT="server">
+<node CREATED="1421908838940" ID="ID_1465818374" MODIFIED="1421908852983" TEXT="socketlistener   (&#x5bf9;&#x5e94;&#x7684;socketclient)">
+<node COLOR="#cc6600" CREATED="1421979733922" ID="ID_459326453" MODIFIED="1421979781747" TEXT="&#x5bf9;&#x4e8e;SharpRpc&#x5219;&#x662f;&#x7b80;&#x5355;&#x5b9e;&#x73b0;Start,Stop&#x63a5;&#x53e3;&#xff0c;&#x5728;Receive&#x6570;&#x636e;&#x5b8c;&#x6574;&#x65f6;&#xff0c;&#x4f20;&#x5165;&#x9002;&#x5f53;&#x7684;&#x5904;&#x7406;&#x5668;&#x5373;&#x53ef;"/>
+<node COLOR="#cc3300" CREATED="1421991922507" ID="ID_1002271101" MODIFIED="1421991970308" TEXT="&#x5bf9;&#x4e8e;SharpRpc&#x8fd8;&#x6709;&#x4e2a;&#x4fee;&#x6539;&#x91cd;&#x70b9;&#x662f;&#x53bb;&#x6389;&#x90a3;&#x4e2a;await&#x6a21;&#x5f0f;&#xff0c;&#x4e0d;&#x7528;Task!"/>
+</node>
+</node>
+<node CREATED="1421996617596" ID="ID_1555543421" MODIFIED="1421996624518" TEXT="SharpRpc&#x63a5;&#x53e3;">
+<node COLOR="#cc33ff" CREATED="1421996630652" ID="ID_38836616" MODIFIED="1422338670771" TEXT="client">
+<node CREATED="1422338062392" ID="ID_915376636" MODIFIED="1422338067788" TEXT="&#x5c01;&#x88c5;&#x63a5;&#x53e3;">
+<node CREATED="1422338069390" ID="ID_1431386876" MODIFIED="1422338435073" TEXT="byte[]   SendAsync(string host,int port,byte[] request, int timeout)"/>
+<node CREATED="1422338166366" ID="ID_1652507719" MODIFIED="1422338227569" TEXT="&#x6570;&#x636e;&#x7ed3;&#x6784;:  totalLen(4&#x5b57;&#x8282;) + uriLen(4&#x5b57;&#x8282;) + contentLen(4&#x5b57;&#x8282;) + uri + content"/>
+<node CREATED="1422338377150" ID="ID_1684698767" MODIFIED="1422338447538" TEXT="&#x4fee;&#x6539;OutgoingRequestProcessor&#x7684;&#x540c;&#x6b65;&#x65b9;&#x6cd5;Process&#x4e3a;&#x771f;&#x6b63;&#x7684;&#x540c;&#x6b65;&#x65b9;&#x6cd5;"/>
+</node>
+</node>
+<node COLOR="#cc33ff" CREATED="1421996634540" ID="ID_429746697" MODIFIED="1422338680300" TEXT="server">
+<node CREATED="1422338591358" ID="ID_1876435254" MODIFIED="1422338649155" TEXT="&#x5b9e;&#x73b0;Start()&#x76d1;&#x542c;&#xff0c; Stop&#x505c;&#x6b62;&#x76d1;&#x542c;&#xff0c;&#x7528;&#x4f20;&#x5165;&#x7684;&#x5904;&#x7406;&#x5668;ReqeustProcessor&#x5904;&#x7406;&#x4e1a;&#x52a1;&#x903b;&#x8f91;&#x5373;&#x53ef;&#xff0c;&#x76f8;&#x5bf9;&#x7b80;&#x5355;&#x4e9b;"/>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1422342512927" ID="ID_1601187003" MODIFIED="1422342631911" TEXT="after 20160127">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      &#30452;&#25509;&#21253;&#21547;&#20102;&#30456;&#20851;&#38024;&#23545;SharpRpc&#30340;&#20462;&#25913;&#38416;&#36848; !
+    </p>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1422342522190" FOLDED="true" ID="ID_1410745200" MODIFIED="1422346375064" TEXT="&#x5173;&#x952e;&#x7c7b;&#x6574;&#x7406;">
+<node CREATED="1422343099790" ID="ID_502418067" MODIFIED="1422343112463" TEXT="&#x7f13;&#x51b2;&#x533a;&#x7684;&#x8bbe;&#x7f6e;">
+<node CREATED="1422343117726" ID="ID_1567579799" MODIFIED="1422343121712" TEXT="BufferManager"/>
+</node>
+<node CREATED="1422343080014" ID="ID_1883958976" MODIFIED="1422343087438" TEXT="&#x6d88;&#x606f;&#x6570;&#x636e;&#x5904;&#x7406;">
+<node CREATED="1422342569934" ID="ID_1762626687" MODIFIED="1422342580471" TEXT="&#x6d88;&#x606f;&#x7684; [&#x6253;&#x5305;] &#x5904;&#x7406;">
+<node CREATED="1422345080990" ID="ID_236261187" MODIFIED="1422345416938" TEXT="MessagePreparer">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      1&#12289;&#20174;SocketAsyncEventArgs&#20013;&#25552;&#21462;usertoken&#65306;DataHoldingUserToken&#12290;
+    </p>
+    <p>
+      2&#12289;&#20174;DataHoldingUserToken&#25552;&#21462;&#24453;&#21457;&#36865;&#30340;&#25968;&#25454;&#30340;&#23553;&#35013;&#31867;DataHolder&#12290;
+    </p>
+    <p>
+      3&#12289;&#23545;DataHolder&#20013;&#30340;&#26576;&#26465;&#28040;&#24687;<font color="#663300">&#36716;&#20026;Byte[]&#21518;</font>&#36827;&#34892;<b><font color="#006633">PrefixHanlder+Content</font></b>&#22788;&#29702;&#12290;
+    </p>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1422345442126" ID="ID_553511274" MODIFIED="1422345742031" TEXT="&#x8fd9;&#x662f;SharpRpc&#x4fee;&#x6b63;&#x7684;&#x5173;&#x952e;&#x70b9;&#x4e4b;&#x4e00;">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      1&#12289;PrefixHandler&#25913;&#20026;&#65306;<b><font color="#006633">totalLen + uriLen + argsContentLen</font></b><font color="#006633">&#160;&#21644; &#23545;&#24212;&#30340;byte[]&#30340;offset&#20889;&#20837;&#20301;&#32622;</font>&#35843;&#25972;&#12290;
+    </p>
+    <p>
+      2&#12289;&#23558;<font color="#663300">prefixLength&#30001;4&#23383;&#33410;&#25913;&#20026;12&#23383;&#33410;</font>&#65292;&#29992;&#20110;&#20998;&#21035;&#23384;totalLen&#65292;uriLen&#65292;argsContentLen&#12290;
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1422345750239" ID="ID_1575373565" MODIFIED="1422345798312" TEXT="&#x4fee;&#x6b63;DataHoldingUserToken&#x7684;sendPrifixLength&#x4e3a;12(&#x539f;&#x59cb;&#x503c;&#x4e3a;4)"/>
+</node>
+</node>
+<node CREATED="1422342542974" ID="ID_1566695743" MODIFIED="1422342568175" TEXT="&#x6d88;&#x606f;&#x7684; [&#x63a5;&#x6536;] &#x5904;&#x7406;">
+<node CREATED="1422342583823" ID="ID_568544559" MODIFIED="1422342598847" TEXT="PrefixHandler"/>
+<node CREATED="1422343147998" ID="ID_1963515733" MODIFIED="1422343152703" TEXT="MessageHandler"/>
+</node>
+<node CREATED="1422343259230" ID="ID_439469239" MODIFIED="1422343358489" TEXT="DataHoldingUserToken">
+<node CREATED="1422343344606" ID="ID_323534647" MODIFIED="1422343849113" TEXT="&#x53d1;&#x9001;&#x6570;&#x636e;&#x90e8;&#x5206;">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font color="#006666">bytesSentAlready</font>&#65292;<font color="#006633">sendBytesRemaining</font>&#22312;<b><font color="#663300">ProcessSend</font></b>&#23436;&#25104;&#26102;&#20570;&#21508;&#33258;&#30340;<b><font color="#006666">&#21152;</font></b><font color="#006666">(bytesSentAlready)</font>&#21644;<b><font color="#006633">&#20943;</font></b><font color="#006633">(sendBytesRemaining)</font>&#20462;&#27491;&#12290;
+    </p>
+    <p>
+      &#24403;<font color="#006633">sendBytesRemaining==0</font>&#26102;&#65292;&#23436;&#25104;&#26412;&#27425;&#28040;&#24687;&#30340;&#21457;&#36865;&#65292;&#26497;&#26377;&#21487;&#33021;&#20998;&#22810;&#27425;&#25165;&#21457;&#36865;&#23436;&#25104;&#65281;
+    </p>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1422343377502" ID="ID_1159823375" MODIFIED="1422343408863" TEXT="Byte[] dataToSend   &#x4e0d;&#x9650;&#x5927;&#x5c0f; &#xff01;"/>
+<node CREATED="1422343415598" ID="ID_1408687958" MODIFIED="1422343666524" TEXT="sendBytesRemaining"/>
+<node CREATED="1422343467374" ID="ID_1539899082" MODIFIED="1422343672179" TEXT="bytesSentAlready"/>
+</node>
+<node CREATED="1422343359918" ID="ID_537154788" MODIFIED="1422343364655" TEXT="&#x63a5;&#x6536;&#x6570;&#x636e;&#x90e8;&#x5206;"/>
+</node>
+</node>
+</node>
+<node CREATED="1422346364111" ID="ID_1011996342" MODIFIED="1422346373648" TEXT="&#x5bf9;&#x4e8e;SharpRpc">
+<node CREATED="1422346376591" ID="ID_749381584" MODIFIED="1422346393578" TEXT="SocketClient&#x662f;&#x4e2a;&#x6c60;&#x5bf9;&#x8c61;">
+<node CREATED="1422346394751" ID="ID_1924557525" MODIFIED="1422346418823" TEXT="1&#x3001;&#x63d0;&#x4f9b;&#x63a5;&#x53e3;&#x5f80;&#x6c60;&#x4e2d;&#x67d0;&#x4e2a;&#x6570;&#x636e;&#x6c60;&#x4e2d;&#x5199;&#x5165;&#x6570;&#x636e;">
+<node CREATED="1422346602638" ID="ID_1863134631" MODIFIED="1422346661656" TEXT="BlockingStack&lt;OutgoingMessageHolder&gt;">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      &#35813;&#22534;&#26632;&#20013;&#20445;&#23384;&#24453;&#21457;&#36865;&#25968;&#25454;&#65292;<font color="#663300">&#21518;&#36827;&#20808;&#20986;</font>&#26159;&#20026;&#20102;&#39640;&#25928;&#21527;&#65311;&#65281;
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node CREATED="1422346422094" ID="ID_1616339824" MODIFIED="1422346473159" TEXT="2&#x3001;&#x6570;&#x636e;&#x8fd4;&#x56de;&#x65f6;&#xff0c;&#x89e6;&#x53d1;&#x4e8b;&#x4ef6;&#x8fd4;&#x7ed9;SharpRpc">
+<node CREATED="1422347186143" ID="ID_71905997" MODIFIED="1422350031667" TEXT="&#x5728;SocketClient&#x7684;ProcessReceive&#x4e2d;&#x5b8c;&#x6210;&#x65f6;&#x89e6;&#x53d1;&#x76f8;&#x5173;&#x4e8b;&#x4ef6;&#xff01;">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      1&#12289;&#22312;socketclient&#20013;
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node COLOR="#990000" CREATED="1422350037007" ID="ID_1498465703" MODIFIED="1422352411683" TEXT="SharpRpc&#x63a5;&#x53e3;">
+<richcontent TYPE="NOTE">&lt;html&gt;
+  &lt;head&gt;
+    
+    
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;
+      &amp;#36825;&amp;#37324;&amp;#25105;&amp;#20204;&amp;#24517;&amp;#39035;&lt;content ename=&quot;content&quot;&gt;&amp;#36825;&amp;#20010;&amp;#26426;&amp;#21046;&amp;#65292;&amp;#22240;&amp;#20026;socketclient&amp;#26412;&amp;#36523;&amp;#24050;&amp;#32463;&amp;#24322;&amp;#27493;&amp;#39640;&amp;#25928;&amp;#20102;&amp;#65292;&amp;#36825;&amp;#37324;&amp;#19981;&amp;#35201;&amp;#22312;&amp;#35843;&amp;#29992;&amp;#32447;&amp;#31243;&amp;#27744;&amp;#20013;&amp;#32447;&amp;#31243;&amp;#21478;&amp;#36215;&amp;#32447;&amp;#31243;&amp;#28010;&amp;#36153;&amp;#36164;&amp;#28304;&amp;#20102;&amp;#12290;
+    &lt;/p&gt;
+    &lt;p&gt;
+      Thread.sleep&amp;#26159;&amp;#30495;&amp;#27491;&amp;#30340;&amp;#24213;&amp;#23618;&amp;#20241;&amp;#30496;&amp;#65292;&amp;#19981;&amp;#20250;&amp;#24433;&amp;#21709;CPU&amp;#24615;&amp;#33021;&amp;#30340;&amp;#12290;&amp;#21363;&amp;#65306;&amp;#30830;&amp;#20445;&amp;#19981;&amp;#29992;Task&amp;#65281;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &lt;font color=&quot;#663300&quot;&gt;&amp;#30001;socketclient&amp;#30340;processreceive&amp;#23436;&amp;#25104;&amp;#26102;&amp;#65292;&amp;#36127;&amp;#36131;&amp;#35774;&amp;#32622;tokenid&amp;#23545;&amp;#24212;&amp;#30340;flag&amp;#21644;&amp;#23383;&amp;#33410;&amp;#25968;&amp;#32452;&amp;#25968;&amp;#25454;&amp;#30340;&amp;#25335;&amp;#36125;&amp;#20889;&amp;#20837;&amp;#24182;&amp;#28165;&amp;#31354;&amp;#30456;&amp;#20851;socket&amp;#22238;&amp;#27744;&lt;/font&gt;&amp;#12290;
+    &lt;/p&gt;
+    &lt;p&gt;
+      byte[] Send(...){
+    &lt;/p&gt;
+    &lt;p&gt;
+      &amp;#160;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&lt;font color=&quot;#006633&quot;&gt;//tokenid&amp;#24456;&amp;#37325;&amp;#35201;&amp;#65292;&amp;#29992;&amp;#20110;&amp;#23613;&amp;#21487;&amp;#33021;&amp;#30340;&amp;#39640;&amp;#25928;&amp;#21028;&amp;#26029;&amp;#26159;&amp;#21542;&amp;#24050;&amp;#36820;&amp;#22238;&amp;#25968;&amp;#25454;!&amp;#65292;&amp;#32771;&amp;#34385;&amp;#37319;&amp;#29992;&amp;#20301;&amp;#25968;&amp;#32452;&amp;#65292;&amp;#27599;&amp;#22825;&amp;#28165;&amp;#38646;long&amp;#31867;&amp;#22411; 
+      &lt;/font&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &lt;font color=&quot;#006633&quot;&gt;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;//&amp;#20272;&amp;#31639;&amp;#27599;&amp;#22825;&amp;#30340;sharprpc&amp;#35843;&amp;#29992;&amp;#37327;&amp;#65292;&amp;#25353;&amp;#21315;&amp;#19975;&amp;#32423;&amp;#26469;&amp;#31639;&amp;#22909;&amp;#20102;&amp;#65292;&amp;#24517;&amp;#39035;&amp;#26377;&lt;/font&gt;&lt;font color=&quot;#ff0000&quot;&gt;&amp;#40664;&amp;#35748;&amp;#36229;&amp;#26102;&amp;#35774;&amp;#32622;&lt;/font&gt;&lt;font color=&quot;#006633&quot;&gt;&amp;#65281;&amp;#20940;&amp;#26216;3&amp;#28857;&amp;#28165;&amp;#38646;&amp;#65292;&amp;#20250;&amp;#24433;&amp;#21709; 
+      &lt;/font&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &lt;font color=&quot;#006633&quot;&gt;&amp;#160;&amp;#160;&amp;#160;&amp;#160;//&amp;#37096;&amp;#20998;&amp;#29992;&amp;#25143;&amp;#65292;&amp;#21578;&amp;#20043;&amp;#36229;&amp;#26102;&amp;#21363;&amp;#21487;&amp;#12290;&lt;/font&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;Push data to SocketClient DataStack ...with tokenid...
+    &lt;/p&gt;
+    &lt;p&gt;
+      
+    &lt;/p&gt;
+    &lt;p&gt;
+      &amp;#160;&amp;#160;&amp;#160;&amp;#160;&lt;font color=&quot;#006633&quot;&gt;&amp;#160;//&amp;#26681;&amp;#25454;tokenid&amp;#26597;&amp;#35810;&amp;#26159;&amp;#21542;&amp;#24050;&amp;#22788;&amp;#29702;&amp;#23436;&amp;#27605;&amp;#65292;&amp;#31616;&amp;#21333;&amp;#36820;&amp;#22238;true or false&lt;/font&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;while(!getresultbytefromsocketclientflag(tokenid))
+    &lt;/p&gt;
+    &lt;p&gt;
+      &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;Thread.sleep(1);
+    &lt;/p&gt;
+    &lt;p&gt;
+      &amp;#160;&amp;#160;&amp;#160;&amp;#160;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&lt;font color=&quot;#006633&quot;&gt;//&amp;#33509;&amp;#36820;&amp;#22238;true&amp;#65292;&amp;#26681;&amp;#25454;&amp;#35813;tokenid&amp;#21435;&amp;#25552;&amp;#21462;&amp;#23545;&amp;#24212;&amp;#30340;&amp;#23383;&amp;#33410;&amp;#25968;&amp;#32452;&amp;#25968;&amp;#25454;&amp;#65292;&amp;#26159;&amp;#20010;&amp;#23383;&amp;#20856;&amp;#65292;&amp;#25552;&amp;#21462;&amp;#23436;&amp;#21518;&amp;#28165;&amp;#31354;&amp;#65281;&lt;/font&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;byte[] realdata = pickresultfromsocketclientbytokenid();
+    &lt;/p&gt;
+    &lt;p&gt;
+      
+    &lt;/p&gt;
+    &lt;p&gt;
+      &amp;#160;&amp;#160;&amp;#160;&amp;#160;return byte[];
+    &lt;/p&gt;
+    &lt;p&gt;
+      }
+    &lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</richcontent>
+</node>
+</node>
+</node>
 </node>
 </node>
 </node>
