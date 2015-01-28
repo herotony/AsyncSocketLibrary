@@ -47,6 +47,7 @@
     <Compile Include="Common\MessageHandler.cs" />
     <Compile Include="Common\DataHolder.cs" />
     <Compile Include="Common\DataHoldingUserToken.cs" />
+    <Compile Include="Common\Client\SocketClient.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

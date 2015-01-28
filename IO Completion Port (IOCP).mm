@@ -10,8 +10,7 @@
       &#36825;&#26159;&#19968;&#31181;&#25903;&#25345;<font color="#006666"><b>&#39640;&#24615;&#33021;&#65292;&#22823;&#24182;&#21457;&#30340;&#24322;&#27493;&#22788;&#29702;&#27169;&#24335;</b></font>&#65292;&#24191;&#27867;&#24212;&#29992;&#20110;&#31867;&#20284;TCP/IP&#36890;&#35759;&#24212;&#29992;&#31243;&#24207;&#20013;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1421203644977" ID="ID_861298209" LINK="http://www.codeproject.com/Articles/1052/Developing-a-Truly-Scalable-Winsock-Server-using-I" MODIFIED="1421908605791" POSITION="right" TEXT="IOCP&#x9610;&#x8ff0;&#x6587;&#x7ae0;&#x4e00;[c++&#x7248;]">
 <node CREATED="1421203673141" FOLDED="true" ID="ID_916500432" MODIFIED="1422341773440" TEXT="&#x8bf4;&#x660e;&#x56fe;&#x793a;">
 <node CREATED="1421221255239" ID="ID_771791791" MODIFIED="1421221262841">
@@ -41,8 +40,7 @@
       IO&#26412;&#36523;&#24182;&#27809;&#24102;&#26469;&#20160;&#20040;&#20219;&#20309;&#25552;&#39640;&#65292;&#20851;&#38190;&#36824;&#26159;<font color="#006666">GetQueuedCompletionStatus&#26041;&#27861;&#20197;&#21450;&#37197;&#21512;&#35813;&#26041;&#27861;&#30340;&#31995;&#21015;&#25968;&#25454;&#32467;&#26500;&#21644;&#20854;&#20182;&#21021;&#22987;&#21270;&#26041;&#27861;</font>&#12290;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1421204199045" ID="ID_288929108" MODIFIED="1421204232456" TEXT="&#x7279;&#x522b;&#x9002;&#x5408;&#x5927;&#x5e76;&#x53d1;&#x7684;&#x5f02;&#x6b65;IO&#x573a;&#x666f;&#xff0c;&#x7ed3;&#x5408;&#x9884;&#x5148;&#x5206;&#x914d;&#x7684;&#x7ebf;&#x7a0b;&#x6c60;&#x5c06;&#x6781;&#x5927;&#x63d0;&#x9ad8;&#x6027;&#x80fd;"/>
 <node CREATED="1421204238518" ID="ID_1171602123" MODIFIED="1421204315583" TEXT="&#x6bcf;&#x521b;&#x5efa;&#x4e00;&#x4e2a;IOCP&#xff0c;&#x7cfb;&#x7edf;&#x5185;&#x90e8;&#x4f1a;&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x961f;&#x5217;&#x6765;&#x63a5;&#x6536;&#x5f02;&#x6b65;IO&#x8bf7;&#x6c42;"/>
 <node CREATED="1421204449158" ID="ID_1376361279" MODIFIED="1421204461363" TEXT="CreateIoCompletionPort ">
@@ -161,8 +159,7 @@
       &#20197;&#21450;&#22914;&#20309;&#32465;&#23450;IOCP&#25105;&#20204;&#37117;&#26080;&#38656;&#20851;&#24515;&#65292;&#21482;&#38656;&#35201;&#20351;&#29992;&#35813;&#31867;&#26469;&#22788;&#29702;TCP&#65292;&#37027;&#23601;&#20195;&#34920;&#39640;&#25928;&#65281;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1421285165055" ID="ID_1574155174" LINK="http://www.codeproject.com/Articles/83102/C-SocketAsyncEventArgs-High-Performance-Socket-Cod" MODIFIED="1422342469300" TEXT="codeproject &#x793a;&#x4f8b;&#x6587;&#x7ae0;">
 <node CREATED="1422342470526" FOLDED="true" ID="ID_1495555656" MODIFIED="1422342520089" TEXT="before 20160127">
 <node CREATED="1421304342913" FOLDED="true" ID="ID_663482712" MODIFIED="1422342493888" TEXT="msdn&#x5b98;&#x65b9;&#x793a;&#x4f8b;">
@@ -1439,13 +1436,12 @@
       &#30452;&#25509;&#21253;&#21547;&#20102;&#30456;&#20851;&#38024;&#23545;SharpRpc&#30340;&#20462;&#25913;&#38416;&#36848; !
     </p>
   </body>
-</html>
-</richcontent>
-<node CREATED="1422342522190" FOLDED="true" ID="ID_1410745200" MODIFIED="1422346375064" TEXT="&#x5173;&#x952e;&#x7c7b;&#x6574;&#x7406;">
+</html></richcontent>
+<node CREATED="1422342522190" ID="ID_1410745200" MODIFIED="1422411550546" TEXT="&#x5173;&#x952e;&#x7c7b;&#x6574;&#x7406;">
 <node CREATED="1422343099790" ID="ID_502418067" MODIFIED="1422343112463" TEXT="&#x7f13;&#x51b2;&#x533a;&#x7684;&#x8bbe;&#x7f6e;">
 <node CREATED="1422343117726" ID="ID_1567579799" MODIFIED="1422343121712" TEXT="BufferManager"/>
 </node>
-<node CREATED="1422343080014" ID="ID_1883958976" MODIFIED="1422343087438" TEXT="&#x6d88;&#x606f;&#x6570;&#x636e;&#x5904;&#x7406;">
+<node CREATED="1422343080014" ID="ID_1883958976" MODIFIED="1422424386231" TEXT="&#x6d88;&#x606f;&#x6570;&#x636e;&#x5904;&#x7406;">
 <node CREATED="1422342569934" ID="ID_1762626687" MODIFIED="1422342580471" TEXT="&#x6d88;&#x606f;&#x7684; [&#x6253;&#x5305;] &#x5904;&#x7406;">
 <node CREATED="1422345080990" ID="ID_236261187" MODIFIED="1422345416938" TEXT="MessagePreparer">
 <richcontent TYPE="NOTE"><html>
@@ -1522,101 +1518,88 @@
       &#35813;&#22534;&#26632;&#20013;&#20445;&#23384;&#24453;&#21457;&#36865;&#25968;&#25454;&#65292;<font color="#663300">&#21518;&#36827;&#20808;&#20986;</font>&#26159;&#20026;&#20102;&#39640;&#25928;&#21527;&#65311;&#65281;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1422346422094" ID="ID_1616339824" MODIFIED="1422346473159" TEXT="2&#x3001;&#x6570;&#x636e;&#x8fd4;&#x56de;&#x65f6;&#xff0c;&#x89e6;&#x53d1;&#x4e8b;&#x4ef6;&#x8fd4;&#x7ed9;SharpRpc">
-<node CREATED="1422347186143" ID="ID_71905997" MODIFIED="1422410611283" TEXT="&#x5728;SocketClient&#x7684;ProcessReceive&#x4e2d;&#x5b8c;&#x6210;&#x65f6;&#x89e6;&#x53d1;&#x76f8;&#x5173;&#x4e8b;&#x4ef6;&#xff01;">
+<node CREATED="1422347186143" ID="ID_71905997" MODIFIED="1422424440593" TEXT="&#x5728;SocketClient&#x7684;ProcessReceive&#x4e2d;&#x5b8c;&#x6210;&#x65f6;&#x89e6;&#x53d1;&#x76f8;&#x5173;&#x4e8b;&#x4ef6;&#xff01;"/>
+</node>
+<node COLOR="#990000" CREATED="1422350037007" ID="ID_1498465703" MODIFIED="1422411520329" TEXT="SharpRpc&#x63a5;&#x53e3;">
 <richcontent TYPE="NOTE"><html>
   <head>
     
   </head>
   <body>
-    <p>
-      1&#12289;&#22312;socketclient&#20013;
-    </p>
-  </body>
-</html>
-</richcontent>
-</node>
-</node>
-<node COLOR="#990000" CREATED="1422350037007" ID="ID_1498465703" MODIFIED="1422411349909" TEXT="SharpRpc&#x63a5;&#x53e3;">
-<richcontent TYPE="NOTE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <table border="0" style="border-bottom-style: solid; border-right-style: solid; border-bottom-width: 0; border-right-width: 0; border-left-width: 0; border-top-style: solid; border-left-style: solid; border-top-width: 0; width: 80%">
+    <table style="border-left-width: 0; border-right-width: 0; width: 80%; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-width: 0; border-right-style: solid; border-bottom-width: 0" border="0">
       <tr>
-        <td style="border-right-style: solid; border-bottom-style: solid; border-right-width: 1; border-bottom-width: 1; border-left-width: 1; border-top-style: solid; border-left-style: solid; border-top-width: 1; width: 100%" valign="top">
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+        <td style="border-left-width: 1; border-right-width: 1; border-top-style: solid; width: 100%; border-bottom-style: solid; border-left-style: solid; border-top-width: 1; border-right-style: solid; border-bottom-width: 1" valign="top">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             <font color="#006666">&#36825;&#37324;&#25105;&#20204;&#24517;&#39035;&#36825;&#20010;&#26426;&#21046;&#65292;&#22240;&#20026;socketclient&#26412;&#36523;&#24050;&#32463;&#24322;&#27493;&#39640;&#25928;&#20102;&#65292;&#36825;&#37324;&#19981;&#35201;&#22312;&#35843;&#29992;&#32447;&#31243;&#27744;&#20013;&#32447;&#31243;&#21478;&#36215;&#32447;&#31243;&#28010;&#36153;&#36164;&#28304;&#20102;&#12290; </font>
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             <font color="#006666">Thread.sleep&#26159;&#30495;&#27491;&#30340;&#24213;&#23618;&#20241;&#30496;&#65292;&#19981;&#20250;&#24433;&#21709;CPU&#24615;&#33021;&#30340;&#12290;&#21363;&#65306;&#30830;&#20445;&#19981;&#29992;Task&#65281; </font>
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             <font color="#006666">&#160; </font>
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             <font color="#006666">&#30001;socketclient&#30340;processreceive&#23436;&#25104;&#26102;&#65292;&#36127;&#36131;&#35774;&#32622;tokenid&#23545;&#24212;&#30340;flag&#21644;&#23383;&#33410;&#25968;&#32452;&#25968;&#25454;&#30340;&#25335;&#36125;&#20889;&#20837;&#24182;&#28165;&#31354;&#30456;&#20851;socket&#22238;&#27744;&#12290;</font>
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             &#160;
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             byte[] Send(...){
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             &#160;
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             &#160;&#160;&#160;&#160;&#160;&#160;<font color="#009933">//tokenid&#24456;&#37325;&#35201;&#65292;&#29992;&#20110;&#23613;&#21487;&#33021;&#30340;&#39640;&#25928;&#21028;&#26029;&#26159;&#21542;&#24050;&#36820;&#22238;&#25968;&#25454;!&#65292;&#32771;&#34385;&#37319;&#29992;&#20301;&#25968;&#32452;&#65292;&#27599;&#22825;&#28165;&#38646;long&#31867;&#22411;&#160; </font>
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             <font color="#009933">&#160;&#160;&#160;&#160;&#160;&#160;//&#20272;&#31639;&#27599;&#22825;&#30340;sharprpc&#35843;&#29992;&#37327;&#65292;&#25353;&#21315;&#19975;&#32423;&#26469;&#31639;&#22909;&#20102;&#65292;&#24517;&#39035;&#26377;&#40664;&#35748;&#36229;&#26102;&#35774;&#32622;&#65281;&#20940;&#26216;3&#28857;&#28165;&#38646;&#65292;&#20250;&#24433;&#21709;&#160; </font>
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             <font color="#009933">&#160;&#160;&#160;&#160;&#160;&#160;//&#37096;&#20998;&#29992;&#25143;&#65292;&#21578;&#20043;&#36229;&#26102;&#21363;&#21487;</font>&#12290;
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             &#160;&#160;&#160;&#160;&#160;&#160;Push data to SocketClient DataStack ...with tokenid...
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             &#160;
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             &#160;&#160;&#160;&#160;&#160;&#160;<font color="#009933">//&#26681;&#25454;tokenid&#26597;&#35810;&#26159;&#21542;&#24050;&#22788;&#29702;&#23436;&#27605;&#65292;&#31616;&#21333;&#36820;&#22238;true or false</font>
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             &#160;&#160;&#160;&#160;&#160;&#160;while(!getresultbytefromsocketclientflag(tokenid))&#160;
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Thread.sleep(1);
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             &#160;
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             &#160;&#160;&#160;&#160;<font color="#009933">&#160;//&#33509;&#36820;&#22238;true&#65292;&#26681;&#25454;&#35813;tokenid&#21435;&#25552;&#21462;&#23545;&#24212;&#30340;&#23383;&#33410;&#25968;&#32452;&#25968;&#25454;&#65292;&#26159;&#20010;&#23383;&#20856;&#65292;&#25552;&#21462;&#23436;&#21518;&#28165;&#31354;&#65281;</font>
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             &#160;&#160;&#160;&#160;&#160;byte[] realdata = pickresultfromsocketclientbytokenid();
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             &#160;&#160;&#160;&#160;&#160;return byte[];&#160;
           </p>
-          <p style="margin-right: 1; margin-left: 1; margin-top: 1; margin-bottom: 1">
+          <p style="margin-left: 1; margin-right: 1; margin-bottom: 1; margin-top: 1">
             }
           </p>
         </td>
