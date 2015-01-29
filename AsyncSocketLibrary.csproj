@@ -35,23 +35,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pool\IPoolSlotHolder.cs" />
-    <Compile Include="Pool\PoolSlot.cs" />
-    <Compile Include="Pool\LockFreeSemaphore.cs" />
-    <Compile Include="Pool\Pool.cs" />
-    <Compile Include="Pool\PoolEx.cs" />
     <Compile Include="Common\LogManager.cs" />
     <Compile Include="Common\BufferManager.cs" />
     <Compile Include="Common\StatisticInfo.cs" />
     <Compile Include="Common\PrefixHandler.cs" />
     <Compile Include="Common\MessageHandler.cs" />
-    <Compile Include="Common\DataHolder.cs" />
     <Compile Include="Common\DataHoldingUserToken.cs" />
     <Compile Include="Common\Client\SocketClient.cs" />
+    <Compile Include="Common\Client\SocketClientSettings.cs" />
+    <Compile Include="Common\Client\ProcessClientSocketEventManager.cs" />
+    <Compile Include="Common\Client\ConnectOpUserToken.cs" />
+    <Compile Include="Common\Client\OutgoingMessageHolder.cs" />
+    <Compile Include="Common\SocketAsyncEventArgsPool.cs" />
+    <Compile Include="Common\Client\ClientDataHoldingUserToken.cs" />
+    <Compile Include="Common\Client\MessagePreparer.cs" />
+    <Compile Include="Common\Client\ClientSendDataHolder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Pool\" />
     <Folder Include="Common\" />
     <Folder Include="Common\Server\" />
     <Folder Include="Common\Client\" />

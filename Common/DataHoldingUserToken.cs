@@ -7,28 +7,29 @@ namespace AsyncSocketLibrary.Common
 {
 	class DataHoldingUserToken
 	{	
-		private Int32 idOfThisObject; //for loging only 
+		private int idOfThisObject; //for loging only 
 
-		internal readonly Int32 bufferOffsetReceive;
-		internal readonly Int32 permanentReceiveMessageOffset;
-		internal readonly Int32 bufferOffsetSend;
-		internal readonly Int32 receivePrefixLength;
-		internal readonly Int32 sendPrefixLength;						     
+		internal readonly int bufferOffsetReceive;
+		internal readonly int permanentReceiveMessageOffset;
+		internal readonly int bufferOffsetSend;
+		internal readonly int receivePrefixLength;
+		internal readonly int sendPrefixLength;						     
 
-		internal DataHolder theDataHolder;
-		internal Int32 lengthOfCurrentIncomingMessage;
-		internal Int32 receiveMessageOffset;   
-		internal Int32 receivedMessageBytesDoneCount = 0;
+		internal int lengthOfCurrentIncomingMessage;
+		internal int receiveMessageOffset;   
+		internal int receivedMessageBytesDoneCount = 0;
 
 		internal Byte[] byteArrayForPrefix;        
-		internal Int32 receivedPrefixBytesDoneCount = 0;
-		internal Int32 recPrefixBytesDoneThisOp = 0;
+		internal int receivedPrefixBytesDoneCount = 0;
+		internal int recPrefixBytesDoneThisOp = 0;
 
 		internal Byte[] dataToSend;
-		internal Int32 bytesSentAlreadyCount;
-		internal Int32 sendBytesRemainingCount;				          
+		internal int bytesSentAlreadyCount;
+		internal int sendBytesRemainingCount;	
 
-		public DataHoldingUserToken(SocketAsyncEventArgs e, Int32 rOffset, Int32 sOffset, Int32 receivePrefixLength, Int32 sendPrefixLength, Int32 identifier)
+		internal Byte[] dataMessageReceived;
+
+		public DataHoldingUserToken(SocketAsyncEventArgs e, int rOffset, int sOffset, int receivePrefixLength, int sendPrefixLength, int identifier)
 		{
 			this.idOfThisObject = identifier;
 
@@ -36,24 +37,19 @@ namespace AsyncSocketLibrary.Common
 			this.bufferOffsetSend = sOffset;
 			this.receivePrefixLength = receivePrefixLength;
 			this.sendPrefixLength = sendPrefixLength;
+			//会不断修正，permanentReceiveMessageOffset则是用于清零归位使用
 			this.receiveMessageOffset = rOffset + receivePrefixLength;
 			this.permanentReceiveMessageOffset = this.receiveMessageOffset;            
 		}
-
-		//Let's use an ID for this object , just so we can see what
-		//is happening better if we want to.
-		public Int32 TokenId
+			
+		public int TokenId
 		{
 			get
 			{
 				return this.idOfThisObject;
 			}
 		}
-
-		internal void CreateNewDataHolder()
-		{
-			theDataHolder = new DataHolder();
-		}			
+						
 
 		public void Reset()
 		{

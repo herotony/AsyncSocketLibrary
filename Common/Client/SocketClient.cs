@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Concurrent;
 using System.Threading;
 
-namespace AsyncSocketLibrary
+namespace AsyncSocketLibrary.Common.Client
 {
 	public class SocketClient
 	{
@@ -18,14 +18,26 @@ namespace AsyncSocketLibrary
 		private static bool IsAlreadyClear = false;
 		private static int concurrentCount = 0;
 
+		private static BufferManager bufferManager;
+
 		private static Thread threadClear;
 
 		static SocketClient ()
-		{
-		
+		{	
+
 			threadClear = new Thread (new ThreadStart (RunClear));
 			threadClear.IsBackground = true;//进程结束则直接干掉本线程即可，无需等待!
 			threadClear.Start ();
+
+			bufferManager = new BufferManager (1, 1);
+			bufferManager.InitBuffer ();
+
+			LogManager.Log ("SocketClient Fist Invoke Complete!");
+		}
+
+		internal static BufferManager GetSocketClientBufferManager(){
+
+			return bufferManager;
 		}
 
 		//唯一对外发送接口
@@ -73,6 +85,8 @@ namespace AsyncSocketLibrary
 			tokenId = 0;
 			arrTokenId.SetAll (false);
 			dictResult.Clear ();
+
+			LogManager.Log ("ClearAllTokenId Complete Successfully!");
 		}
 
 		//凌晨清零!
@@ -123,6 +137,7 @@ namespace AsyncSocketLibrary
 			if (!tryRemove) {
 
 				//留日志即可...
+				LogManager.Log (string.Format ("TryRemove tokenId:{0} failed!", tokenId));
 			}
 
 			return retData!=null && retData.Length>0;
@@ -138,7 +153,12 @@ namespace AsyncSocketLibrary
 
 			arrTokenId [tokenId] = true;
 
-			return dictResult.TryAdd (tokenId, copyData);
+			bool addRet =  dictResult.TryAdd (tokenId, copyData);
+
+			if (!addRet)
+				LogManager.Log (string.Empty, new Exception (string.Format ("TryAdd retData[{0} byte] Failed on tokenId:{1}", copyData.Length,tokenId)));
+
+			return addRet;
 		}
 	}
 }

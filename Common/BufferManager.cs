@@ -6,15 +6,16 @@ namespace AsyncSocketLibrary.Common
 {
 	class BufferManager
 	{
-		Int32 totalBytesInBufferBlock;
+		int totalBytesInBufferBlock;
 
 		// Byte array maintained by the Buffer Manager.
 		byte[] bufferBlock;         
 		Stack<int> freeIndexPool;     
-		Int32 currentIndex;
-		Int32 bufferBytesAllocatedForEachSaea;
+		int currentIndex;
+		int bufferBytesAllocatedForEachSaea;
 
-		public BufferManager(Int32 totalBytes, Int32 totalBufferBytesInEachSaeaObject)
+		//totalBytes % totalBufferBytesInEachSaeaObject should must equals 0 
+		public BufferManager(int totalBytes, int totalBufferBytesInEachSaeaObject)
 		{
 			totalBytesInBufferBlock = totalBytes;
 			this.currentIndex = 0;
