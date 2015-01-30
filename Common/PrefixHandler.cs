@@ -10,7 +10,7 @@ namespace AsyncSocketLibrary.Common
 {
 	class PrefixHandler
 	{
-		public int HandlePrefix(SocketAsyncEventArgs e, DataHoldingUserToken receiveSendToken, int remainingBytesToProcess)
+		public static int HandlePrefix(SocketAsyncEventArgs e, DataHoldingUserToken receiveSendToken, int remainingBytesToProcess)
 		{            
 			if (receiveSendToken.receivedPrefixBytesDoneCount == 0)
 			{

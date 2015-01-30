@@ -50,6 +50,7 @@
     <Compile Include="Common\Client\ClientDataHoldingUserToken.cs" />
     <Compile Include="Common\Client\MessagePreparer.cs" />
     <Compile Include="Common\Client\ClientSendDataHolder.cs" />
+    <Compile Include="Common\Client\MessageInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

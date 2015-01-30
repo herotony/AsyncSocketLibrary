@@ -10,7 +10,7 @@ namespace AsyncSocketLibrary.Common
 	class MessageHandler
 	{
 
-		public bool HandleMessage(SocketAsyncEventArgs receiveSendEventArgs, DataHoldingUserToken receiveSendToken, Int32 remainingBytesToProcess)
+		public static bool HandleMessage(SocketAsyncEventArgs receiveSendEventArgs, DataHoldingUserToken receiveSendToken, Int32 remainingBytesToProcess)
 		{
 			bool incomingTcpMessageIsReady = false;
 

@@ -17,10 +17,10 @@ namespace AsyncSocketLibrary.Common.Client
 			// 2) the message.
 
 			//Determine the length of the message that we will send.
-			int lengthOfCurrentOutgoingMessage = dataHolder.arrayOfMessageToSend[dataHolder.NumberOfMessagesSent].Length;
+			int lengthOfCurrentOutgoingMessage = dataHolder.arrayOfMessageToSend[dataHolder.NumberOfMessagesSent].Content.Length;
 
 			//convert the message to byte array
-			Byte[] arrayOfBytesInMessage = dataHolder.arrayOfMessageToSend[dataHolder.NumberOfMessagesSent];
+			Byte[] arrayOfBytesInMessage = dataHolder.arrayOfMessageToSend[dataHolder.NumberOfMessagesSent].Content;
 
 			//So, now we convert the length integer into a byte array.
 			//Aren't byte arrays wonderful? Maybe you'll dream about byte arrays tonight!
