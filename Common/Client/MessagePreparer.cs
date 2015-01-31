@@ -28,6 +28,7 @@ namespace AsyncSocketLibrary.Common.Client
 
 			//Create the byte array to send.
 			theUserToken.dataToSend = new Byte[theUserToken.sendPrefixLength + lengthOfCurrentOutgoingMessage];
+			theUserToken.messageTokenId = dataHolder.arrayOfMessageToSend [dataHolder.NumberOfMessagesSent].MessageTokenId;
 
 			//Now copy the 2 things to the theUserToken.dataToSend.
 			Buffer.BlockCopy(arrayOfBytesInPrefix, 0, theUserToken.dataToSend, 0, theUserToken.sendPrefixLength);

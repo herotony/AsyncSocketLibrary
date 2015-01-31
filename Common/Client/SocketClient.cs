@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
+using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
@@ -44,7 +45,8 @@ namespace AsyncSocketLibrary.Common.Client
 
 			DateTime start = DateTime.Now;
 
-			SocketClientSettings settings = null;
+			//未来改成读配置文件
+			SocketClientSettings settings = new SocketClientSettings (new IPEndPoint (IPAddress.Parse ("127.0.0.1"), 4444), 1, 10, 100);
 
 			_settings = settings;
 
@@ -128,6 +130,7 @@ namespace AsyncSocketLibrary.Common.Client
 
 							isFirstIn = false;
 
+							firstMsgInfo.startTime=DateTime.Now;
 							//..转交saea
 							listSend.Add(firstMsgInfo);
 
@@ -136,6 +139,7 @@ namespace AsyncSocketLibrary.Common.Client
 
 							if(msgInfo!=null){
 
+								msgInfo.startTime=DateTime.Now;
 								//..转交saea
 								listSend.Add(msgInfo);
 							}
@@ -181,6 +185,7 @@ namespace AsyncSocketLibrary.Common.Client
 			DateTime start = DateTime.Now;
 
 			MessageInfo msgInfo = new MessageInfo ();
+
 			msgInfo.MessageTokenId = _tokenId;
 			msgInfo.Content = sendData;
 
@@ -199,7 +204,7 @@ namespace AsyncSocketLibrary.Common.Client
 					break;
 				}
 
-				Thread.Sleep (10);
+				Thread.Sleep (1);
 			}
 
 

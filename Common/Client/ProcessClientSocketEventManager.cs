@@ -54,7 +54,7 @@ namespace AsyncSocketLibrary.Common.Client
 
 				ConnectOpUserToken theConnectingToken = (ConnectOpUserToken)connectEventArgs.UserToken;
 				theConnectingToken.outgoingMessageHolder = new OutgoingMessageHolder (messages);
-			}				
+			}								
 
 			StartConnect (connectEventArgs, serverEndPoint);
 		}
@@ -102,7 +102,9 @@ namespace AsyncSocketLibrary.Common.Client
 
 				MessagePreparer.GetDataToSend(receiveSendEventArgs);
 
-				//StartSend(receiveSendEventArgs);
+				receiveSendToken.startTime = theConnectingToken.outgoingMessageHolder.arrayOfMessages [0].startTime;
+
+				StartSend(receiveSendEventArgs);
 
 				//release connectEventArgs object back to the pool.
 				connectEventArgs.AcceptSocket = null;
@@ -176,6 +178,14 @@ namespace AsyncSocketLibrary.Common.Client
 			{
 				// We'll just close the socket if there was a
 				// socket error when receiving data from the client.
+
+				if (PushResultCallback != null) {
+
+					LogManager.Log (string.Format ("messageTokenId:{0} send failed! SocketError:{1}", receiveSendToken.messageTokenId,receiveSendEventArgs.SocketError));
+
+					PushResultCallback (receiveSendToken.messageTokenId, null);
+				}
+
 				receiveSendToken.Reset();
 				StartDisconnect(receiveSendEventArgs);
 			}            
@@ -217,7 +227,7 @@ namespace AsyncSocketLibrary.Common.Client
 			}
 				
 
-			Int32 remainingBytesToProcess = receiveSendEventArgs.BytesTransferred;
+			int remainingBytesToProcess = receiveSendEventArgs.BytesTransferred;
 
 
 			// If we have not got all of the prefix then we need to work on it. 
@@ -247,10 +257,14 @@ namespace AsyncSocketLibrary.Common.Client
 
 			if (incomingTcpMessageIsReady == true)
 			{						
-
-
 				//null out the byte array, for the next message
 				receiveSendToken.theSendDataHolder.arrayOfMessageToSend = null;
+
+				LogManager.Log (string.Format ("messageTokeId:{0} consume time :{1} ms", receiveSendToken.messageTokenId, DateTime.Now.Subtract (receiveSendToken.startTime).TotalMilliseconds));
+
+				//将数据写入缓存字典中
+				if (PushResultCallback != null)
+					PushResultCallback (receiveSendToken.messageTokenId, receiveSendToken.dataMessageReceived);
 
 				//Reset the variables in the UserToken, to be ready for the
 				//next message that will be received on the socket in this
@@ -297,6 +311,7 @@ namespace AsyncSocketLibrary.Common.Client
 			// determine which type of operation just completed and call the associated handler
 			switch (e.LastOperation)
 			{
+
 			case SocketAsyncOperation.Connect:
 
 				ProcessConnect(e);
@@ -304,50 +319,66 @@ namespace AsyncSocketLibrary.Common.Client
 
 			case SocketAsyncOperation.Receive:
 
-				//ProcessReceive(e);
+				ProcessReceive(e);
 				break;
 
 			case SocketAsyncOperation.Send:
 
-				//ProcessSend(e);
+				ProcessSend(e);
 				break;
 
 			case SocketAsyncOperation.Disconnect:
 
-				//ProcessDisconnectAndCloseSocket(e);                    
+				ProcessDisconnectAndCloseSocket(e);                    
 				break;
 
 			default:
 				{
 					ClientDataHoldingUserToken receiveSendToken = (ClientDataHoldingUserToken)e.UserToken;
 
-					throw new ArgumentException("\r\nError in I/O Completed, id = " + receiveSendToken.TokenId);                       
-				}                    
+					if (PushResultCallback != null) {
+
+						PushResultCallback (receiveSendToken.messageTokenId, null);
+					}
+
+					theMaxConnectionsEnforcer.Release ();
+					LogManager.Log (string.Empty, new ArgumentException ("\r\nError in I/O Completed, id = " + receiveSendToken.TokenId));                       
+				}   
+				break;
 			}
 		}
 
 		private void ProcessConnectionError(SocketAsyncEventArgs connectEventArgs)
 		{
-			ConnectOpUserToken theConnectingToken = (ConnectOpUserToken)connectEventArgs.UserToken;
+			try{
 
-			// If connection was refused by server or timed out or not reachable, then we'll keep this socket.
-			// If not, then we'll destroy it.
-			if ((connectEventArgs.SocketError != SocketError.ConnectionRefused) && (connectEventArgs.SocketError != SocketError.TimedOut)  && (connectEventArgs.SocketError != SocketError.HostUnreachable))
-			{
-				CloseSocket(connectEventArgs.AcceptSocket);
-			}            				
+				ConnectOpUserToken theConnectingToken = (ConnectOpUserToken)connectEventArgs.UserToken;
 
-			//返回null数据
-			if (PushResultCallback != null) {
+				// If connection was refused by server or timed out or not reachable, then we'll keep this socket.
+				// If not, then we'll destroy it.
+				if ((connectEventArgs.SocketError != SocketError.ConnectionRefused) && (connectEventArgs.SocketError != SocketError.TimedOut)  && (connectEventArgs.SocketError != SocketError.HostUnreachable))
+				{
+					CloseSocket(connectEventArgs.AcceptSocket);
+				}            				
 
-				for (int i = 0; i < theConnectingToken.outgoingMessageHolder.arrayOfMessages.Count; i++)
-					PushResultCallback (theConnectingToken.outgoingMessageHolder.arrayOfMessages [i].MessageTokenId, null);
-			}
+				//返回null数据
+				if (PushResultCallback != null) {
 
-			//it is time to release connectEventArgs object back to the pool.
-			poolOfConnectEventArgs.Push(connectEventArgs);  
+					for (int i = 0; i < theConnectingToken.outgoingMessageHolder.arrayOfMessages.Count; i++)
+						PushResultCallback (theConnectingToken.outgoingMessageHolder.arrayOfMessages [i].MessageTokenId, null);
+				}
 
-			theMaxConnectionsEnforcer.Release();
+				//it is time to release connectEventArgs object back to the pool.
+				poolOfConnectEventArgs.Push(connectEventArgs);  
+
+			}catch(Exception closeErr){
+
+				LogManager.Log (string.Empty, closeErr);
+
+			}finally{
+
+				theMaxConnectionsEnforcer.Release();
+			}				
 		}
 
 		private void StartDisconnect(SocketAsyncEventArgs receiveSendEventArgs)
@@ -364,27 +395,28 @@ namespace AsyncSocketLibrary.Common.Client
 
 		private void ProcessDisconnectAndCloseSocket(SocketAsyncEventArgs receiveSendEventArgs)
 		{
-			ClientDataHoldingUserToken receiveSendToken = (ClientDataHoldingUserToken)receiveSendEventArgs.UserToken;
+			try{
 
-			if (receiveSendEventArgs.SocketError != SocketError.Success)
-			{
-				//...			
-			}				
+				ClientDataHoldingUserToken receiveSendToken = (ClientDataHoldingUserToken)receiveSendEventArgs.UserToken;							
 
-			//This method closes the socket and releases all resources, both
-			//managed and unmanaged. It internally calls Dispose.
-			receiveSendEventArgs.AcceptSocket.Close();
+				//This method closes the socket and releases all resources, both
+				//managed and unmanaged. It internally calls Dispose.
+				receiveSendEventArgs.AcceptSocket.Close();
 
-			//for testing
-			Int32 sCount = receiveSendToken.theSendDataHolder.NumberOfMessagesSent;
+				//create an object that we can write data to.
+				receiveSendToken.CreateNewSendDataHolder();
 
-			//create an object that we can write data to.
-			receiveSendToken.CreateNewSendDataHolder();
+				// It is time to release this SAEA object.
+				this.poolOfRecSendEventArgs.Push(receiveSendEventArgs);
 
-			// It is time to release this SAEA object.
-			this.poolOfRecSendEventArgs.Push(receiveSendEventArgs);
+			}catch(Exception shutdownErr){
 
-			this.theMaxConnectionsEnforcer.Release();					
+				LogManager.Log (string.Empty, shutdownErr);
+
+			}finally{
+
+				this.theMaxConnectionsEnforcer.Release();
+			}												
 		}
 
 		private void CloseSocket(Socket theSocket){

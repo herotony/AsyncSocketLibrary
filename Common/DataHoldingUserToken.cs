@@ -9,6 +9,9 @@ namespace AsyncSocketLibrary.Common
 	{	
 		private int idOfThisObject; //for loging only 
 
+		internal DateTime startTime;
+		internal DateTime endTime;
+
 		internal readonly int bufferOffsetReceive;
 		internal readonly int permanentReceiveMessageOffset;
 		internal readonly int bufferOffsetSend;
@@ -22,6 +25,8 @@ namespace AsyncSocketLibrary.Common
 		internal Byte[] byteArrayForPrefix;        
 		internal int receivedPrefixBytesDoneCount = 0;
 		internal int recPrefixBytesDoneThisOp = 0;
+
+		internal int messageTokenId = 0;
 
 		internal Byte[] dataToSend;
 		internal int bytesSentAlreadyCount;
@@ -53,6 +58,7 @@ namespace AsyncSocketLibrary.Common
 
 		public void Reset()
 		{
+			this.messageTokenId = 0;
 			this.receivedPrefixBytesDoneCount = 0;
 			this.receivedMessageBytesDoneCount = 0;
 			this.recPrefixBytesDoneThisOp = 0;
