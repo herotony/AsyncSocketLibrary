@@ -1,6 +1,6 @@
 <map version="1.0.1">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
-<node CREATED="1421202872529" ID="ID_1548151603" MODIFIED="1422410611198" TEXT="IO Completion Port (IOCP)">
+<node CREATED="1421202872529" ID="ID_1548151603" MODIFIED="1422929975387" TEXT="IO Completion Port (IOCP)">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -12,7 +12,7 @@
   </body>
 </html></richcontent>
 <node CREATED="1421203644977" ID="ID_861298209" LINK="http://www.codeproject.com/Articles/1052/Developing-a-Truly-Scalable-Winsock-Server-using-I" MODIFIED="1421908605791" POSITION="right" TEXT="IOCP&#x9610;&#x8ff0;&#x6587;&#x7ae0;&#x4e00;[c++&#x7248;]">
-<node CREATED="1421203673141" FOLDED="true" ID="ID_916500432" MODIFIED="1422341773440" TEXT="&#x8bf4;&#x660e;&#x56fe;&#x793a;">
+<node CREATED="1421203673141" FOLDED="true" ID="ID_916500432" MODIFIED="1422930052245" TEXT="&#x8bf4;&#x660e;&#x56fe;&#x793a;">
 <node CREATED="1421221255239" ID="ID_771791791" MODIFIED="1421221262841">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -24,7 +24,7 @@
 </html></richcontent>
 </node>
 </node>
-<node CREATED="1421203841862" FOLDED="true" ID="ID_1778496822" LINK="http://msdn.microsoft.com/en-us/library/aa365198%28VS.85%29.aspx" MODIFIED="1422410611224" TEXT="&#x5fae;&#x8f6f;&#x5b98;&#x65b9;&#x4ecb;&#x7ecd;">
+<node CREATED="1421203841862" FOLDED="true" ID="ID_1778496822" LINK="http://msdn.microsoft.com/en-us/library/aa365198%28VS.85%29.aspx" MODIFIED="1422930044613" TEXT="&#x5fae;&#x8f6f;&#x5b98;&#x65b9;&#x4ecb;&#x7ecd;">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -1606,9 +1606,15 @@
       </tr>
     </table>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
+</node>
+<node CREATED="1422950007333" ID="ID_804251035" MODIFIED="1422950033676" TEXT="&#x5ba2;&#x6237;&#x7aef;&#x7684;&#x7b80;&#x5355;&#x81ea;&#x6d4b;&#x7ed3;&#x679c;">
+<node CREATED="1422950034847" ID="ID_1962790746" MODIFIED="1422950062586" TEXT="&#x4e0d;&#x540c;&#x673a;&#x5b50;&#x6548;&#x679c;&#x4e0d;&#x4e00;&#x6837;&#xff0c;&#x6628;&#x5929;&#x6362;&#x7b14;&#x8bb0;&#x672c;&#x548c;&#x539f;&#x53f0;&#x5f0f;&#x673a;&#x6548;&#x679c;&#x5dee;&#x8ddd;&#x8f83;&#x5927;">
+<node CREATED="1422950064240" ID="ID_644998880" MODIFIED="1422950075042" TEXT="&#x53f0;&#x5f0f;&#x673a;&#xff1a;&#x6bcf;&#x79d2;1000&#x5427;"/>
+<node CREATED="1422950076224" ID="ID_1691858796" MODIFIED="1422950089107" TEXT="&#x7b14;&#x8bb0;&#x672c;&#xff1a;&#x6bcf;&#x79d2;&#x80fd;&#x5230;2000"/>
+</node>
+<node CREATED="1422950091787" ID="ID_1594387493" MODIFIED="1422950112279" TEXT="&#x4f46;&#x76ee;&#x524d;&#x53d1;&#x9001;&#x5927;&#x6570;&#x636e;&#x548c;&#x670d;&#x52a1;&#x7aef;&#x8fd8;&#x9700;&#x7ec6;&#x8c03;&#xff01;"/>
 </node>
 </node>
 </node>

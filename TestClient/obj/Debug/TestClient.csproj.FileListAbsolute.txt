@@ -1,0 +1,8 @@
+D:\GitHubData\AsyncSocketLibrary\TestClient\bin\Debug\TestClient.exe
+D:\GitHubData\AsyncSocketLibrary\TestClient\bin\Debug\TestClient.pdb
+D:\GitHubData\AsyncSocketLibrary\TestClient\bin\Debug\AsyncSocketLibrary.dll
+D:\GitHubData\AsyncSocketLibrary\TestClient\bin\Debug\log4net.dll
+D:\GitHubData\AsyncSocketLibrary\TestClient\bin\Debug\AsyncSocketLibrary.pdb
+D:\GitHubData\AsyncSocketLibrary\TestClient\obj\Debug\TestClient.csprojResolveAssemblyReference.cache
+D:\GitHubData\AsyncSocketLibrary\TestClient\obj\Debug\TestClient.exe
+D:\GitHubData\AsyncSocketLibrary\TestClient\obj\Debug\TestClient.pdb
