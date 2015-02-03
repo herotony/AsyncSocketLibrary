@@ -275,10 +275,17 @@ namespace AsyncSocketLibrary.Common.Client
 				//loop back to StartSend.
 				if (receiveSendToken.theSendDataHolder.NumberOfMessagesSent < this.numberMessagesOfPerConnection)
 				{
-					//No need to reset the buffer for send here.
-					//It is reset in the StartSend method.
-					MessagePreparer.GetDataToSend(receiveSendEventArgs);
-					StartSend(receiveSendEventArgs);
+					ClientDataHoldingUserToken theUserToken = (ClientDataHoldingUserToken)receiveSendEventArgs.UserToken;
+					ClientSendDataHolder dataHolder = theUserToken.theSendDataHolder;
+					if (dataHolder.arrayOfMessageToSend.Count > receiveSendToken.theSendDataHolder.NumberOfMessagesSent) {
+
+						//No need to reset the buffer for send here.
+						//It is reset in the StartSend method.
+						MessagePreparer.GetDataToSend(receiveSendEventArgs);
+						StartSend(receiveSendEventArgs);
+					}else
+						StartDisconnect(receiveSendEventArgs);
+						
 				}
 				else
 				{

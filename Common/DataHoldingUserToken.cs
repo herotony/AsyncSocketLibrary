@@ -10,7 +10,6 @@ namespace AsyncSocketLibrary.Common
 		private int idOfThisObject; //for loging only 
 
 		internal DateTime startTime;
-		internal DateTime endTime;
 
 		internal readonly int bufferOffsetReceive;
 		internal readonly int permanentReceiveMessageOffset;

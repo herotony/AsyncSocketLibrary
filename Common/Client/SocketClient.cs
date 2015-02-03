@@ -10,11 +10,15 @@ namespace AsyncSocketLibrary.Common.Client
 {
 	public class SocketClient
 	{
+		//缓存返回数据
 		private static ConcurrentDictionary<int,byte[]> dictResult = new ConcurrentDictionary<int, byte[]>();
+
+		//关键是为了记录发送到返回的起始时间点，便于查看耗时
 		private static ConcurrentQueue<MessageInfo> SendingMessages = new ConcurrentQueue<MessageInfo> ();
 
 		//相当于83886080 个请求，10兆空间处理8千万请求你/天，不是并发哦，是一天一个前端的累计访问量
 		private static BitArray arrTokenId = new BitArray(new byte[10*1024*1024]);
+
 		private static int msgTokenId = 0;
 		private static int timeOutByMS = 1000;//超时设置，单位毫秒
 
@@ -22,18 +26,22 @@ namespace AsyncSocketLibrary.Common.Client
 		private static int ClearTime = 3;
 		private static bool IsAlreadyClear = false;
 
+		//查询并发
 		private static int concurrentCount = 0;
 
+		//核心部分！
 		private static BufferManager bufferManager;
 
 		//开启两个线程，一个负责清零，一个负责发送
 		private static Thread threadClear;
 		private static Thread threadSending;
 
+		//最终要修改为读取配置
 		private static SocketClientSettings _settings;
 
 		private static SocketAsyncEventArgsPool poolOfRecSendEventArgs;
 		private static SocketAsyncEventArgsPool poolOfConnectEventArgs;
+
 		private static ProcessClientSocketEventManager processManager;
 
 		static SocketClient(){
@@ -109,28 +117,37 @@ namespace AsyncSocketLibrary.Common.Client
 
 		private static void SendMessageOverAndOver(){
 
+			List<MessageInfo> listSend = new List<MessageInfo>();
+
+			bool dequeueOk = false;
+
+			MessageInfo firstMsgInfo = null;
+			MessageInfo msgInfo = null;
+
 			while (true) {
 
 				try{
 
-					bool dequeueOk = false;
+					//确保长连接多发时，不会因为小于多发的数量而此时队列没数据了导致的发送丢失
+					if(listSend.Count>0){
 
-					MessageInfo firstMsgInfo;
-					bool isFirstIn = true;
+						processManager.SendMessage(listSend,_settings.ServerEndPoint);
+						listSend = new List<MessageInfo>();
+					}
+
+				
+					bool isFirstInPerLoop = true;
 
 					dequeueOk = SendingMessages.TryDequeue(out firstMsgInfo);
 
-					List<MessageInfo> listSend = new List<MessageInfo>();
-
-					MessageInfo msgInfo = null;
-
 					while(dequeueOk){
 					
-						if( isFirstIn && firstMsgInfo!=null){
+						if( isFirstInPerLoop && firstMsgInfo!=null){
 
-							isFirstIn = false;
+							isFirstInPerLoop = false;
 
 							firstMsgInfo.startTime=DateTime.Now;
+
 							//..转交saea
 							listSend.Add(firstMsgInfo);
 
@@ -149,7 +166,7 @@ namespace AsyncSocketLibrary.Common.Client
 
 							if(listSend.Count<_settings.NumberOfMessagesPerConnection){
 
-								if(SendingMessages.Count.Equals(0)){
+								if(SendingMessages.IsEmpty){
 
 									processManager.SendMessage(listSend,_settings.ServerEndPoint);
 									listSend = new List<MessageInfo>();
@@ -160,7 +177,7 @@ namespace AsyncSocketLibrary.Common.Client
 								listSend = new List<MessageInfo>();
 							}
 						}
-							
+
 						dequeueOk = SendingMessages.TryDequeue(out msgInfo);
 					}						
 						
