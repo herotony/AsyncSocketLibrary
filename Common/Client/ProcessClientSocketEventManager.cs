@@ -8,10 +8,19 @@ namespace AsyncSocketLibrary.Common.Client
 {
 	internal class ProcessClientSocketEventManager
 	{	
-
 		internal delegate bool PushResult(int messageTokenId,byte[] retData);
 
 		internal PushResult PushResultCallback;
+
+		private object lockObjOpCount = new object ();
+		private object lockObjRecSendCount = new object ();
+
+		internal int maxConcurrentConnectOpCount = 0;
+		internal int maxConcurrentRecSendCount = 0;
+
+		private int concurrentConnectOpCount = 0;
+		private int concurrentRecSendCount = 0;
+
 
 		private SocketAsyncEventArgsPool poolOfRecSendEventArgs;
 		private SocketAsyncEventArgsPool poolOfConnectEventArgs;
@@ -21,7 +30,6 @@ namespace AsyncSocketLibrary.Common.Client
 		private int prefixHandleLength;
 
 		Semaphore theMaxConnectionsEnforcer;
-
 
 		public ProcessClientSocketEventManager(SocketAsyncEventArgsPool connectPool,SocketAsyncEventArgsPool recSendPool,int maxRecSendConnection,int BufferSize,int numberMessageOfPerConnection,int prefixHandleLength){
 
@@ -36,6 +44,7 @@ namespace AsyncSocketLibrary.Common.Client
 
 		internal void SendMessage(List<MessageInfo> messages,IPEndPoint serverEndPoint){
 
+			//允许最大的并发传输数量为maxRecSendConnection，否则处于等待！
 			theMaxConnectionsEnforcer.WaitOne ();
 
 			SocketAsyncEventArgs connectEventArgs = this.poolOfConnectEventArgs.Pop();
@@ -66,22 +75,25 @@ namespace AsyncSocketLibrary.Common.Client
 			connectEventArgs.RemoteEndPoint = serverEndPoint;
 			connectEventArgs.AcceptSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-			//Post the connect operation on the socket.
-			//A local port is assigned by the Windows OS during connect op.            
+			lock (lockObjOpCount) {
+
+				concurrentConnectOpCount++;
+				if (concurrentConnectOpCount > maxConcurrentConnectOpCount)
+					maxConcurrentConnectOpCount = concurrentConnectOpCount;
+			}
+				
 			bool willRaiseEvent = connectEventArgs.AcceptSocket.ConnectAsync(connectEventArgs);
 			if (!willRaiseEvent)
 			{
 				ProcessConnect(connectEventArgs);
 			}
 		}
-
-		//____________________________________________________________________________
-		// Pass the connection info from the connecting object to the object
-		// that will do send/receive. And put the connecting object back in the pool.
-		//
+			
 		private  void ProcessConnect(SocketAsyncEventArgs connectEventArgs)
 		{
 			ConnectOpUserToken theConnectingToken = (ConnectOpUserToken)connectEventArgs.UserToken;
+
+			Interlocked.Decrement (ref concurrentConnectOpCount);
 
 			if (connectEventArgs.SocketError == SocketError.Success)
 			{
@@ -103,6 +115,13 @@ namespace AsyncSocketLibrary.Common.Client
 				MessagePreparer.GetDataToSend(receiveSendEventArgs);
 
 				receiveSendToken.startTime = theConnectingToken.outgoingMessageHolder.arrayOfMessages [0].startTime;
+
+				lock (lockObjRecSendCount) {
+
+					concurrentRecSendCount++;
+					if (concurrentRecSendCount > maxConcurrentRecSendCount)
+						maxConcurrentRecSendCount = concurrentRecSendCount;
+				}
 
 				StartSend(receiveSendEventArgs);
 
@@ -184,7 +203,7 @@ namespace AsyncSocketLibrary.Common.Client
 					LogManager.Log (string.Format ("messageTokenId:{0} send failed! SocketError:{1}", receiveSendToken.messageTokenId,receiveSendEventArgs.SocketError));
 
 					PushResultCallback (receiveSendToken.messageTokenId, null);
-				}
+				}										
 
 				receiveSendToken.Reset();
 				StartDisconnect(receiveSendEventArgs);
@@ -197,7 +216,6 @@ namespace AsyncSocketLibrary.Common.Client
 			//Set buffer for receive.          
 			receiveSendEventArgs.SetBuffer(receiveSendToken.bufferOffsetReceive, this.bufferSize);
 						        
-
 			bool willRaiseEvent = receiveSendEventArgs.AcceptSocket.ReceiveAsync(receiveSendEventArgs);
 			if (!willRaiseEvent)
 			{
@@ -257,8 +275,6 @@ namespace AsyncSocketLibrary.Common.Client
 
 			if (incomingTcpMessageIsReady == true)
 			{						
-				//null out the byte array, for the next message
-				receiveSendToken.theSendDataHolder.arrayOfMessageToSend = null;
 
 				LogManager.Log (string.Format ("messageTokeId:{0} consume time :{1} ms", receiveSendToken.messageTokenId, DateTime.Now.Subtract (receiveSendToken.startTime).TotalMilliseconds));
 
@@ -275,22 +291,24 @@ namespace AsyncSocketLibrary.Common.Client
 				//loop back to StartSend.
 				if (receiveSendToken.theSendDataHolder.NumberOfMessagesSent < this.numberMessagesOfPerConnection)
 				{
-					ClientDataHoldingUserToken theUserToken = (ClientDataHoldingUserToken)receiveSendEventArgs.UserToken;
-					ClientSendDataHolder dataHolder = theUserToken.theSendDataHolder;
-					if (dataHolder.arrayOfMessageToSend.Count > receiveSendToken.theSendDataHolder.NumberOfMessagesSent) {
+					if (receiveSendToken.theSendDataHolder.arrayOfMessageToSend.Count > receiveSendToken.theSendDataHolder.NumberOfMessagesSent) {
 
 						//No need to reset the buffer for send here.
 						//It is reset in the StartSend method.
-						MessagePreparer.GetDataToSend(receiveSendEventArgs);
-						StartSend(receiveSendEventArgs);
-					}else
-						StartDisconnect(receiveSendEventArgs);
+						MessagePreparer.GetDataToSend (receiveSendEventArgs);
+						StartSend (receiveSendEventArgs);
+					} else {
+
+						receiveSendToken.theSendDataHolder.arrayOfMessageToSend = null;
+						StartDisconnect (receiveSendEventArgs);
+					}
 						
 				}
 				else
 				{
 					//Since we have sent all the messages that we planned to send,
 					//time to disconnect.                    
+					receiveSendToken.theSendDataHolder.arrayOfMessageToSend = null;
 					StartDisconnect(receiveSendEventArgs);
 				}
 			}
@@ -361,6 +379,8 @@ namespace AsyncSocketLibrary.Common.Client
 
 				ConnectOpUserToken theConnectingToken = (ConnectOpUserToken)connectEventArgs.UserToken;
 
+				LogManager.Log(string.Format("for socket connect error({0}),we simple return null data from client to invoker",connectEventArgs.SocketError));
+
 				// If connection was refused by server or timed out or not reachable, then we'll keep this socket.
 				// If not, then we'll destroy it.
 				if ((connectEventArgs.SocketError != SocketError.ConnectionRefused) && (connectEventArgs.SocketError != SocketError.TimedOut)  && (connectEventArgs.SocketError != SocketError.HostUnreachable))
@@ -369,7 +389,7 @@ namespace AsyncSocketLibrary.Common.Client
 				}            				
 
 				//返回null数据
-				if (PushResultCallback != null) {
+				if (PushResultCallback != null) {				
 
 					for (int i = 0; i < theConnectingToken.outgoingMessageHolder.arrayOfMessages.Count; i++)
 						PushResultCallback (theConnectingToken.outgoingMessageHolder.arrayOfMessages [i].MessageTokenId, null);
@@ -390,6 +410,8 @@ namespace AsyncSocketLibrary.Common.Client
 
 		private void StartDisconnect(SocketAsyncEventArgs receiveSendEventArgs)
 		{
+			Interlocked.Decrement (ref concurrentRecSendCount);
+
 			ClientDataHoldingUserToken receiveSendToken = (ClientDataHoldingUserToken)receiveSendEventArgs.UserToken;
 
 			receiveSendEventArgs.AcceptSocket.Shutdown(SocketShutdown.Both);

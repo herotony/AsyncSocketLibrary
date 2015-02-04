@@ -5,6 +5,7 @@ using System.Collections.Concurrent;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Diagnostics;
 
 namespace AsyncSocketLibrary.Common.Client
 {
@@ -51,9 +52,11 @@ namespace AsyncSocketLibrary.Common.Client
 
 		private static void Init(){
 
-			DateTime start = DateTime.Now;
+			Stopwatch sw = new Stopwatch ();
 
-			//未来改成读配置文件
+			sw.Start ();
+
+			//未来改成读配置文件！
 			SocketClientSettings settings = new SocketClientSettings (new IPEndPoint (IPAddress.Parse ("127.0.0.1"), 4444), 1, 10, 100);
 
 			_settings = settings;
@@ -61,9 +64,14 @@ namespace AsyncSocketLibrary.Common.Client
 			bufferManager = new BufferManager (_settings.BufferSize*_settings.OpsToPreAllocate*_settings.NumberOfSaeaForRecSend,_settings.BufferSize*_settings.OpsToPreAllocate);
 			bufferManager.InitBuffer ();
 
+			//用于负责建立连接的saea，无关buffermanager，10个足够！这部分实际在processManager中可以动态增加
 			poolOfConnectEventArgs = new SocketAsyncEventArgsPool (_settings.MaxConnectOps);
+
+			//用于负责在建立好的连接上传输数据，涉及buffermanager，目前测试100～200个足够！这部分目前不支持动态增加！
+			//因其buffermanager是事先分配好的一大块连续的固定内存区域，强烈建议不再更改，需要做好的就是事先的大小评估。
 			poolOfRecSendEventArgs = new SocketAsyncEventArgsPool (_settings.NumberOfSaeaForRecSend);
 
+			//实际负责处理相关传输数据的关键核心类
 			processManager = new ProcessClientSocketEventManager (poolOfConnectEventArgs, poolOfRecSendEventArgs,_settings.MaxConnectOps,_settings.BufferSize,_settings.NumberOfMessagesPerConnection,_settings.ReceivePrefixLength);
 
 			for (int i = 0; i < _settings.MaxConnectOps; i++) {
@@ -72,6 +80,7 @@ namespace AsyncSocketLibrary.Common.Client
 
 				connectEventArg.Completed += new EventHandler<SocketAsyncEventArgs>(processManager.IO_Completed);
 
+				//关键负责标识saea和更关键的传输待发送的数据给传输用的saea。
 				ConnectOpUserToken theConnectingToken = new ConnectOpUserToken(poolOfConnectEventArgs.AssignTokenId() + 10000);
 				connectEventArg.UserToken = theConnectingToken;
 
@@ -80,20 +89,17 @@ namespace AsyncSocketLibrary.Common.Client
 							 
 
 			for (int i = 0; i < _settings.NumberOfSaeaForRecSend; i++) {			
-
-				//Allocate the SocketAsyncEventArgs object.
+			
 				SocketAsyncEventArgs eventArgObjectForPool = new SocketAsyncEventArgs();
 
-				// assign a byte buffer from the buffer block to 
-				//this particular SocketAsyncEventArg object
+				//事先为每个saea分配固定不变的内存位置！
 				bufferManager.SetBuffer(eventArgObjectForPool);
 
 				eventArgObjectForPool.Completed += new EventHandler<SocketAsyncEventArgs>(processManager.IO_Completed);
 
 				ClientDataHoldingUserToken receiveSendToken = new ClientDataHoldingUserToken(eventArgObjectForPool,eventArgObjectForPool.Offset, eventArgObjectForPool.Offset + _settings.BufferSize, _settings.ReceivePrefixLength, _settings.SendPrefixLength, (poolOfRecSendEventArgs.AssignTokenId() + 1000000));
 
-				//Create an object that we can write data to, and remove as an object
-				//from the UserToken, if we wish.
+				//用于传递待发送的数据，一旦完成发送可以重新new一个。
 				receiveSendToken.CreateNewSendDataHolder();
 
 				eventArgObjectForPool.UserToken = receiveSendToken;
@@ -101,6 +107,7 @@ namespace AsyncSocketLibrary.Common.Client
 				poolOfRecSendEventArgs.Push(eventArgObjectForPool);
 			}
 				
+			//用于保存异步处理完后返回的结果数据。
 			processManager.PushResultCallback = TryAdd;
 
 			threadClear = new Thread (new ThreadStart (RunClear));
@@ -111,10 +118,11 @@ namespace AsyncSocketLibrary.Common.Client
 			threadSending.IsBackground = true;
 			threadSending.Start ();
 
-			LogManager.Log (string.Format("SocketClient Fist Invoke Complete! ConsumeTime:{0} ms",DateTime.Now.Subtract(start).TotalMilliseconds));
+			sw.Stop ();
+
+			LogManager.Log (string.Format("SocketClient Init by FirstInvoke Completed! ConsumeTime:{0} ms",sw.ElapsedMilliseconds));
 		}
 			
-
 		private static void SendMessageOverAndOver(){
 
 			List<MessageInfo> listSend = new List<MessageInfo>();
@@ -134,8 +142,7 @@ namespace AsyncSocketLibrary.Common.Client
 						processManager.SendMessage(listSend,_settings.ServerEndPoint);
 						listSend = new List<MessageInfo>();
 					}
-
-				
+										
 					bool isFirstInPerLoop = true;
 
 					dequeueOk = SendingMessages.TryDequeue(out firstMsgInfo);
@@ -148,7 +155,7 @@ namespace AsyncSocketLibrary.Common.Client
 
 							firstMsgInfo.startTime=DateTime.Now;
 
-							//..转交saea
+							//待转交saea
 							listSend.Add(firstMsgInfo);
 
 
@@ -157,7 +164,8 @@ namespace AsyncSocketLibrary.Common.Client
 							if(msgInfo!=null){
 
 								msgInfo.startTime=DateTime.Now;
-								//..转交saea
+
+								//待转交saea
 								listSend.Add(msgInfo);
 							}
 						}
@@ -166,11 +174,13 @@ namespace AsyncSocketLibrary.Common.Client
 
 							if(listSend.Count<_settings.NumberOfMessagesPerConnection){
 
+								//否则，继续追加待发送数据直至达到一个长连接发送的配置量
 								if(SendingMessages.IsEmpty){
 
 									processManager.SendMessage(listSend,_settings.ServerEndPoint);
 									listSend = new List<MessageInfo>();
 								}
+
 							}else{
 
 								processManager.SendMessage(listSend,_settings.ServerEndPoint);
@@ -197,9 +207,11 @@ namespace AsyncSocketLibrary.Common.Client
 		//唯一对外发送接口
 		public static byte[] PushSendDataToPool(byte[] sendData,ref string message){		
 
-			int _tokenId = GetNewTokenId ();
+			Stopwatch sw = new Stopwatch ();
 
-			DateTime start = DateTime.Now;
+			sw.Start ();
+
+			int _tokenId = GetNewTokenId ();
 
 			MessageInfo msgInfo = new MessageInfo ();
 
@@ -215,8 +227,9 @@ namespace AsyncSocketLibrary.Common.Client
 			//wait result...
 			while (!IsIOComplete (_tokenId)) {
 
-				if (DateTime.Now.Subtract (start).TotalMilliseconds > timeOutByMS) {
+				if (sw.ElapsedMilliseconds > timeOutByMS) {
 
+					sw.Stop ();
 					isTimeOut = true;
 					break;
 				}
@@ -227,19 +240,24 @@ namespace AsyncSocketLibrary.Common.Client
 
 			if (isTimeOut) {
 
-				message = string.Format ("Try get retdata timeout on MsgTokenId:{0}! consumetime:{1} ms", _tokenId, DateTime.Now.Subtract (start).TotalMilliseconds);
+				message = string.Format ("Try get retdata timeout on MsgTokenId:{0}! consumetime:{1} ms", _tokenId, sw.ElapsedMilliseconds);
 				return null;
 			}
 
 			if (!TryGetResult (_tokenId, out retData))
-				message = string.Format ("Try get retdata failed on MsgTokenId:{0}! consumetime:{1} ms", _tokenId, DateTime.Now.Subtract (start).TotalMilliseconds);
+				message = string.Format ("Try get retdata from dictionary failed on MsgTokenId:{0}! consumetime:{1} ms", _tokenId, sw.ElapsedMilliseconds);
 			else
-				message = string.Format ("get retdata sucessfully! MsgTokenId:{0} reddata length:{1} consumetime:{2} ms", _tokenId, retData.Length, DateTime.Now.Subtract (start).TotalMilliseconds);
+				message = string.Format ("get retdata sucessfully! MsgTokenId:{0} reddata length:{1} consumetime:{2} ms", _tokenId, retData.Length, sw.ElapsedMilliseconds);
+
+			sw.Stop ();
 
 			return retData;
 		}
 
+		public static int GetMaxConcurrentCount(bool getRecSend){
 
+			return getRecSend ? processManager.maxConcurrentRecSendCount : processManager.maxConcurrentConnectOpCount;
+		}
 
 		//用于凌晨某时刻清零...
 		private static void ClearAllTokenId(){

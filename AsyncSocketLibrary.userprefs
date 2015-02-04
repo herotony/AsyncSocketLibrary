@@ -1,11 +1,11 @@
-﻿<Properties>
+﻿<Properties StartupItem="TestClient\TestClient.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Common\Client\ProcessClientSocketEventManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TestClient\Program.cs">
     <Files>
-      <File FileName="TestClient\Program.cs" Line="24" Column="24" />
-      <File FileName="Common\Client\ProcessClientSocketEventManager.cs" Line="7" Column="7" />
-      <File FileName="Common\Client\MessagePreparer.cs" Line="69" Column="69" />
-      <File FileName="Common\DataHoldingUserToken.cs" Line="29" Column="29" />
+      <File FileName="TestClient\Program.cs" Line="42" Column="42" />
+      <File FileName="Common\Client\SocketClient.cs" Line="117" Column="117" />
+      <File FileName="Common\Client\ProcessClientSocketEventManager.cs" Line="11" Column="11" />
+      <File FileName="Common\Client\MessagePreparer.cs" Line="3" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
