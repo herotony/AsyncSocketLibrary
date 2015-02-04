@@ -57,7 +57,7 @@ namespace AsyncSocketLibrary.Common.Client
 			sw.Start ();
 
 			//未来改成读配置文件！
-			SocketClientSettings settings = new SocketClientSettings (new IPEndPoint (IPAddress.Parse ("127.0.0.1"), 4444), 1, 10, 100);
+			SocketClientSettings settings = new SocketClientSettings (new IPEndPoint (IPAddress.Parse ("10.9.60.63"), 4444), 1, 10, 100);
 
 			_settings = settings;
 

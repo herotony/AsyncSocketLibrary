@@ -17,7 +17,7 @@ namespace TestClient
 			Stopwatch sw = new Stopwatch ();
 
 			sw.Start ();
-			int testCount = 10000;
+			int testCount = 1000;
 			int successCount = 0;
 			int failedCount = 0;
 
@@ -31,7 +31,7 @@ namespace TestClient
 
 					try{
 
-						byte[] sendData = Encoding.UTF8.GetBytes(string.Format("id:{0}",Task.CurrentId));
+						byte[] sendData = Encoding.UTF8.GetBytes(string.Format("id测试:{0}",Task.CurrentId));
 						string message = string.Empty;
 
 						byte[] result = AsyncSocketLibrary.Common.Client.SocketClient.PushSendDataToPool (sendData, ref message); 
@@ -44,7 +44,7 @@ namespace TestClient
 							Interlocked.Increment(ref successCount);
 
 							lock(lockObj){
-								sb.AppendFormat("\r\n{0}",Encoding.UTF8.GetString(result));
+								sb.AppendFormat("\r\ntranid:{0} retdata:{1}",BitConverter.ToInt32(result,0),Encoding.UTF8.GetString(result,4,result.Length-4));
 							}
 						}
 

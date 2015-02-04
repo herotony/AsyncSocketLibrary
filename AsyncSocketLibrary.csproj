@@ -53,6 +53,8 @@
     <Compile Include="Common\Client\MessagePreparer.cs" />
     <Compile Include="Common\Client\ClientSendDataHolder.cs" />
     <Compile Include="Common\Client\MessageInfo.cs" />
+    <Compile Include="Common\Server\SocketListenerSettings.cs" />
+    <Compile Include="Common\Server\SocketListener.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
