@@ -55,13 +55,13 @@
     <Compile Include="Common\Client\MessageInfo.cs" />
     <Compile Include="Common\Server\SocketListenerSettings.cs" />
     <Compile Include="Common\Server\SocketListener.cs" />
+    <Compile Include="Common\Server\AcceptOpUserToken.cs" />
+    <Compile Include="Common\Server\ServerDataHoldingUserToken.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Common\" />
     <Folder Include="Common\Server\" />
     <Folder Include="Common\Client\" />
-    <Folder Include="Server\" />
-    <Folder Include="Client\" />
   </ItemGroup>
 </Project>

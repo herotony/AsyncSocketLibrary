@@ -5,8 +5,9 @@ namespace AsyncSocketLibrary.Common
 	public class StatisticInfo
 	{	
 		public static readonly bool watchProgramFlow = false;
-		public static Int32 serverTransMissionId;
-		public static Int32 serverSessionId;
+		public static readonly bool watchThreads = false;
+		public static int serverTransMissionId;
+		public static int serverSessionId;
 
 	}
 }
