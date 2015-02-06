@@ -7,7 +7,7 @@ namespace AsyncSocketLibrary.Common.Client
 	{
 		internal ClientSendDataHolder theSendDataHolder;
 
-		public ClientDataHoldingUserToken(SocketAsyncEventArgs e, int rOffset, int sOffset, int receivePrefixLength, int sendPrefixLength, int identifier):base(e,rOffset,sOffset,receivePrefixLength,sendPrefixLength,identifier){
+		public ClientDataHoldingUserToken(int rOffset, int sOffset, int receivePrefixLength, int sendPrefixLength, int identifier):base(rOffset,sOffset,receivePrefixLength,sendPrefixLength,identifier){
 		}
 
 		internal void CreateNewSendDataHolder()

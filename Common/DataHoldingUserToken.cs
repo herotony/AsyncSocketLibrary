@@ -33,7 +33,7 @@ namespace AsyncSocketLibrary.Common
 
 		internal Byte[] dataMessageReceived;
 
-		public DataHoldingUserToken(SocketAsyncEventArgs e, int rOffset, int sOffset, int receivePrefixLength, int sendPrefixLength, int identifier)
+		public DataHoldingUserToken( int rOffset, int sOffset, int receivePrefixLength, int sendPrefixLength, int identifier)
 		{
 			this.idOfThisObject = identifier;
 

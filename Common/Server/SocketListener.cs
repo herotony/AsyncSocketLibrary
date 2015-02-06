@@ -17,6 +17,8 @@ namespace AsyncSocketLibrary.Common.Server
 		private int concurrentConnectOpCount = 0;
 		private int concurrentRecSendCount = 0;
 
+		private Func<byte[],byte[]> _dataProcessor;
+
 		//A Semaphore has two parameters, the initial number of available slots
 		// and the maximum number of slots. We'll make them the same. 
 		//This Semaphore is used to keep from going over max connection #. (It is not about 
@@ -25,18 +27,16 @@ namespace AsyncSocketLibrary.Common.Server
 			
 		BufferManager theBufferManager;
 
-		Socket listenSocket; 
+		Socket listenSocket = null; 
 
 		SocketListenerSettings socketListenerSettings;
-
-		PrefixHandler prefixHandler;
-		MessageHandler messageHandler;
 
 		SocketAsyncEventArgsPool poolOfAcceptEventArgs;
 		SocketAsyncEventArgsPool poolOfRecSendEventArgs;
 
-		public SocketListener(SocketListenerSettings theSocketListenerSettings){
+		public SocketListener(SocketListenerSettings theSocketListenerSettings,Func<byte[],byte[]> dataProcessor){
 		
+			this._dataProcessor = dataProcessor;
 			this.socketListenerSettings = theSocketListenerSettings;
 
 			this.theBufferManager = new BufferManager(this.socketListenerSettings.BufferSize * this.socketListenerSettings.NumberOfSaeaForRecSend * this.socketListenerSettings.OpsToPreAllocate,
@@ -47,12 +47,84 @@ namespace AsyncSocketLibrary.Common.Server
 
 			// Create connections count enforcer
 			this.theMaxConnectionsEnforcer = new Semaphore(this.socketListenerSettings.MaxConnections, this.socketListenerSettings.MaxConnections);
+
+			Init ();
+			StartListen ();
 		}
 
-		private void Init(){
+		private void StartListen()
+		{		
+			listenSocket = new Socket(this.socketListenerSettings.LocalEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
+			listenSocket.Bind(this.socketListenerSettings.LocalEndPoint);
 
+			// Start the listener with a backlog of however many connections.
+			//"backlog" means pending connections. 
+			//The backlog number is the number of clients that can wait for a
+			//SocketAsyncEventArg object that will do an accept operation.
+			//The listening socket keeps the backlog as a queue. The backlog allows 
+			//for a certain # of excess clients waiting to be connected.
+			//If the backlog is maxed out, then the client will receive an error when
+			//trying to connect.
+			//max # for backlog can be limited by the operating system.
+			listenSocket.Listen(this.socketListenerSettings.Backlog);
 
+			StartAccept();
+		}
+
+		private void Init(){					     
+		
+			this.theBufferManager.InitBuffer();
+						         
+			for (int i = 0; i < this.socketListenerSettings.MaxAcceptOps; i++)
+			{
+				this.poolOfAcceptEventArgs.Push(CreateNewSaeaForAccept(poolOfAcceptEventArgs));
+			}           
+				
+			SocketAsyncEventArgs eventArgObjectForPool;
+
+			int tokenId;
+
+			for (int i = 0; i < this.socketListenerSettings.NumberOfSaeaForRecSend; i++)
+			{
+				eventArgObjectForPool = new SocketAsyncEventArgs();
+
+				this.theBufferManager.SetBuffer(eventArgObjectForPool);
+
+				tokenId = poolOfRecSendEventArgs.AssignTokenId() + 1000000;
+
+				eventArgObjectForPool.Completed += new EventHandler<SocketAsyncEventArgs>(IO_Completed);
+
+				ServerDataHoldingUserToken theTempReceiveSendUserToken = new ServerDataHoldingUserToken(eventArgObjectForPool.Offset, eventArgObjectForPool.Offset + this.socketListenerSettings.BufferSize, this.socketListenerSettings.ReceivePrefixLength, this.socketListenerSettings.SendPrefixLength, tokenId);
+
+				eventArgObjectForPool.UserToken = theTempReceiveSendUserToken;
+
+				this.poolOfRecSendEventArgs.Push(eventArgObjectForPool);
+			}
+
+		}
+
+		private void IO_Completed(object sender, SocketAsyncEventArgs e)
+		{		
+			ServerDataHoldingUserToken receiveSendToken = (ServerDataHoldingUserToken)e.UserToken;
+
+			// determine which type of operation just completed and call the associated handler
+			switch (e.LastOperation)
+			{
+			case SocketAsyncOperation.Receive:
+				                 
+				ProcessReceive(e);
+				break;
+
+			case SocketAsyncOperation.Send:
+
+				ProcessSend(e);
+				break;
+
+			default:
+
+				throw new ArgumentException("The last operation completed on the socket was not a receive or send");
+			}
 		}
 			
 		internal SocketAsyncEventArgs CreateNewSaeaForAccept(SocketAsyncEventArgsPool pool)
@@ -79,7 +151,7 @@ namespace AsyncSocketLibrary.Common.Server
 			if (StatisticInfo.watchThreads == true)   //for testing
 			{
 				AcceptOpUserToken theAcceptOpToken = (AcceptOpUserToken)e.UserToken;
-				LogManager.Log("AcceptEventArg_Completed()", theAcceptOpToken);
+				LogManager.Log(string.Format("AcceptEventArg_Completed():{0}", theAcceptOpToken));
 			}
 
 			ProcessAccept(e);
@@ -153,7 +225,9 @@ namespace AsyncSocketLibrary.Common.Server
 			SocketAsyncEventArgs receiveSendEventArgs = this.poolOfRecSendEventArgs.Pop();
 
 			//Create sessionId in UserToken.
-			((ServerDataHoldingUserToken)receiveSendEventArgs.UserToken).CreateSessionId();
+			ServerDataHoldingUserToken userToken = (ServerDataHoldingUserToken)receiveSendEventArgs.UserToken;
+
+			userToken.CreateSessionId ();
 
 			//A new socket was created by the AcceptAsync method. The 
 			//SocketAsyncEventArgs object which did the accept operation has that 
@@ -162,11 +236,7 @@ namespace AsyncSocketLibrary.Common.Server
 			//object which will do receive/send.
 			receiveSendEventArgs.AcceptSocket = acceptEventArgs.AcceptSocket;
 
-			if (StatisticInfo.watchProgramFlow == true)
-			{
-				AcceptOpUserToken theAcceptOpToken = (AcceptOpUserToken)acceptEventArgs.UserToken;
-				LogManager.Log("Accept id " + theAcceptOpToken.TokenId + ". RecSend id " + ((DataHoldingUserToken)receiveSendEventArgs.UserToken).TokenId + ".  Remote endpoint = " + IPAddress.Parse(((IPEndPoint)receiveSendEventArgs.AcceptSocket.RemoteEndPoint).Address.ToString()) + ": " + ((IPEndPoint)receiveSendEventArgs.AcceptSocket.RemoteEndPoint).Port.ToString() + ". client(s) connected = " + this.numberOfAcceptedSockets);
-			}
+			userToken.CreateNewDataHolder (receiveSendEventArgs);
 				
 			acceptEventArgs.AcceptSocket = null;
 			this.poolOfAcceptEventArgs.Push(acceptEventArgs);            
@@ -197,7 +267,7 @@ namespace AsyncSocketLibrary.Common.Server
 			if (StatisticInfo.watchThreads == true)   //for testing
 			{
 				AcceptOpUserToken theAcceptOpToken = (AcceptOpUserToken)acceptEventArg.UserToken;
-				LogManager.Log("StartAccept()", theAcceptOpToken);
+				LogManager.Log(string.Format("StartAccept():{0}", theAcceptOpToken));
 			}
 			if (StatisticInfo.watchProgramFlow == true)   //for testing
 			{
@@ -223,7 +293,7 @@ namespace AsyncSocketLibrary.Common.Server
 
 		private void StartReceive(SocketAsyncEventArgs receiveSendEventArgs)
 		{
-			DataHoldingUserToken receiveSendToken = (DataHoldingUserToken)receiveSendEventArgs.UserToken;
+			ServerDataHoldingUserToken receiveSendToken = (ServerDataHoldingUserToken)receiveSendEventArgs.UserToken;
 
 			receiveSendEventArgs.SetBuffer(receiveSendToken.bufferOffsetReceive, this.socketListenerSettings.BufferSize);                    
 
@@ -265,7 +335,7 @@ namespace AsyncSocketLibrary.Common.Server
 			//then we need to work on it here.                                
 			if (receiveSendToken.receivedPrefixBytesDoneCount < this.socketListenerSettings.ReceivePrefixLength)
 			{
-				remainingBytesToProcess = prefixHandler.HandlePrefix(receiveSendEventArgs, receiveSendToken, remainingBytesToProcess);
+				remainingBytesToProcess = PrefixHandler.HandlePrefix(receiveSendEventArgs, receiveSendToken, remainingBytesToProcess);
 
 				if (remainingBytesToProcess == 0)
 				{                    
@@ -280,20 +350,26 @@ namespace AsyncSocketLibrary.Common.Server
 			// If we have processed the prefix, we can work on the message now.
 			// We'll arrive here when we have received enough bytes to read
 			// the first byte after the prefix.
-			bool incomingTcpMessageIsReady = messageHandler.HandleMessage(receiveSendEventArgs, receiveSendToken, remainingBytesToProcess);
+			bool incomingTcpMessageIsReady = MessageHandler.HandleMessage(receiveSendEventArgs, receiveSendToken, remainingBytesToProcess);
 
 			if (incomingTcpMessageIsReady == true)
 			{
-				// Pass the DataHolder object to the Mediator here. The data in
-				// this DataHolder can be used jifor all kinds of things that an
-				// intelligent and creative person like you might think of.                        
-				receiveSendToken.theMediator.HandleData(receiveSendToken.theDataHolder);
+				if (receiveSendToken.dataMessageReceived != null && receiveSendToken.dataMessageReceived.Length > 0) {
 
-				receiveSendToken.dataMessageReceived = null;
-				receiveSendToken.Reset();
+					byte[] processResult = _dataProcessor (receiveSendToken.dataMessageReceived);
 
-				receiveSendToken.theMediator.PrepareOutgoingData();
-				StartSend(receiveSendToken.theMediator.GiveBack());
+					OutgoingDataPreparer.PrepareOutgoingData (receiveSendEventArgs, processResult);
+					StartSend(receiveSendEventArgs);
+
+					receiveSendToken.dataMessageReceived = null;
+					receiveSendToken.Reset();
+
+				} else {
+
+					receiveSendToken.Reset();
+					CloseClientSocket(receiveSendEventArgs);
+					return;
+				}					
 			}
 			else
 			{
@@ -301,6 +377,62 @@ namespace AsyncSocketLibrary.Common.Server
 				receiveSendToken.recPrefixBytesDoneThisOp = 0;
 
 				StartReceive(receiveSendEventArgs);
+			}            
+		}
+
+		private void StartSend(SocketAsyncEventArgs receiveSendEventArgs)
+		{
+			ServerDataHoldingUserToken receiveSendToken = (ServerDataHoldingUserToken)receiveSendEventArgs.UserToken;
+
+
+			if (receiveSendToken.sendBytesRemainingCount <= this.socketListenerSettings.BufferSize)
+			{
+				receiveSendEventArgs.SetBuffer(receiveSendToken.bufferOffsetSend, receiveSendToken.sendBytesRemainingCount);
+				Buffer.BlockCopy(receiveSendToken.dataToSend, receiveSendToken.bytesSentAlreadyCount, receiveSendEventArgs.Buffer, receiveSendToken.bufferOffsetSend, receiveSendToken.sendBytesRemainingCount);
+			}
+			else
+			{
+				receiveSendEventArgs.SetBuffer(receiveSendToken.bufferOffsetSend, this.socketListenerSettings.BufferSize);
+				Buffer.BlockCopy(receiveSendToken.dataToSend, receiveSendToken.bytesSentAlreadyCount, receiveSendEventArgs.Buffer, receiveSendToken.bufferOffsetSend, this.socketListenerSettings.BufferSize);
+
+				//We'll change the value of sendUserToken.sendBytesRemainingCount
+				//in the ProcessSend method.
+			}
+
+			//post asynchronous send operation
+			bool willRaiseEvent = receiveSendEventArgs.AcceptSocket.SendAsync(receiveSendEventArgs);
+
+			if (!willRaiseEvent)
+			{
+				ProcessSend(receiveSendEventArgs);
+			}            
+		}
+
+		private void ProcessSend(SocketAsyncEventArgs receiveSendEventArgs)
+		{
+			ServerDataHoldingUserToken receiveSendToken = (ServerDataHoldingUserToken)receiveSendEventArgs.UserToken;			                   
+
+			if (receiveSendEventArgs.SocketError == SocketError.Success)
+			{
+				receiveSendToken.sendBytesRemainingCount = receiveSendToken.sendBytesRemainingCount - receiveSendEventArgs.BytesTransferred;                 
+
+				if (receiveSendToken.sendBytesRemainingCount == 0)
+				{
+					// If we are within this if-statement, then all the bytes in
+					// the message have been sent. 
+					StartReceive(receiveSendEventArgs);
+				}
+				else
+				{					                 
+					receiveSendToken.bytesSentAlreadyCount += receiveSendEventArgs.BytesTransferred;
+					// So let's loop back to StartSend().
+					StartSend(receiveSendEventArgs);
+				}
+			}
+			else
+			{
+				receiveSendToken.Reset();
+				CloseClientSocket(receiveSendEventArgs);
 			}            
 		}
 

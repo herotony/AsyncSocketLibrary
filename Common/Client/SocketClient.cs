@@ -57,7 +57,8 @@ namespace AsyncSocketLibrary.Common.Client
 			sw.Start ();
 
 			//未来改成读配置文件！
-			SocketClientSettings settings = new SocketClientSettings (new IPEndPoint (IPAddress.Parse ("10.9.60.63"), 4444), 1, 10, 100);
+			SocketClientSettings settings = new SocketClientSettings (new IPEndPoint (IPAddress.Parse ("10.9.60.63"), 6969), 1, 10, 100);
+			//SocketClientSettings settings = new SocketClientSettings (new IPEndPoint (IPAddress.Parse ("127.0.0.1"), 6969), 1, 10, 100);
 
 			_settings = settings;
 
@@ -97,7 +98,7 @@ namespace AsyncSocketLibrary.Common.Client
 
 				eventArgObjectForPool.Completed += new EventHandler<SocketAsyncEventArgs>(processManager.IO_Completed);
 
-				ClientDataHoldingUserToken receiveSendToken = new ClientDataHoldingUserToken(eventArgObjectForPool,eventArgObjectForPool.Offset, eventArgObjectForPool.Offset + _settings.BufferSize, _settings.ReceivePrefixLength, _settings.SendPrefixLength, (poolOfRecSendEventArgs.AssignTokenId() + 1000000));
+				ClientDataHoldingUserToken receiveSendToken = new ClientDataHoldingUserToken(eventArgObjectForPool.Offset, eventArgObjectForPool.Offset + _settings.BufferSize, _settings.ReceivePrefixLength, _settings.SendPrefixLength, (poolOfRecSendEventArgs.AssignTokenId() + 1000000));
 
 				//用于传递待发送的数据，一旦完成发送可以重新new一个。
 				receiveSendToken.CreateNewSendDataHolder();
