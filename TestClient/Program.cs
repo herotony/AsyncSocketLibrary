@@ -3,6 +3,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Threading;
+using System.Net;
+using System.Collections.Generic;
+using AsyncSocketLibrary.Common;
 
 namespace TestClient
 {
@@ -12,6 +15,11 @@ namespace TestClient
 		public static void Main (string[] args)
 		{
 			Console.WriteLine ("Hello World!");
+			Console.ReadKey ();
+
+			ConfigManager cfm = new ConfigManager ();
+			cfm.ConfigChanged += new ConfigManager.OnConfigChangedEventHandler (GetNewConfig);
+
 			Console.ReadKey ();
 
 			Stopwatch sw = new Stopwatch ();
@@ -31,7 +39,7 @@ namespace TestClient
 
 					try{
 
-						byte[] sendData = Encoding.UTF8.GetBytes(string.Format("id测试:{0}",Task.CurrentId));
+						byte[] sendData = Encoding.UTF8.GetBytes(string.Format("id测试:{0} 靠谱!",Task.CurrentId));
 						string message = string.Empty;
 
 						byte[] result = AsyncSocketLibrary.Common.Client.SocketClient.PushSendDataToPool (sendData, ref message); 
@@ -66,6 +74,15 @@ namespace TestClient
 			AsyncSocketLibrary.Common.LogManager.Log (sb.ToString ());
 
 			Console.ReadKey ();
+		}
+
+		private static void GetNewConfig(object sender,AsyncSocketLibrary.Common.SocketSettingEventArgs e){
+
+			Dictionary<string,string> dict = e.DictArg;
+
+			if (dict != null)
+				foreach (string key in dict.Keys)
+					Console.WriteLine (string.Format ("{0} - {1}", key, dict [key]));
 		}
 	}
 }

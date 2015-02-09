@@ -26,7 +26,7 @@ namespace AsyncSocketLibrary.Common.Client
 
 		// 1 for receive, 1 for send. used in BufferManager，所以一般为2，代表一个用于收数据，一个用于发数据
 		//用于BufferManager时，就是：numberOfSaeaForRecSend * bufferSize * 2 而每个连接的是 buffersize * 2
-		private Int32 opsToPreAllocate;
+		private int opsToPreAllocate;
 
 		private IPEndPoint serverEndPoint;
 

@@ -59,6 +59,8 @@
     <Compile Include="Common\Server\ServerDataHoldingUserToken.cs" />
     <Compile Include="Common\Server\ServerDataHolder.cs" />
     <Compile Include="Common\Server\OutgoingDataPreparer.cs" />
+    <Compile Include="Common\ConfigManager.cs" />
+    <Compile Include="Common\SocketSettingEventArgs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

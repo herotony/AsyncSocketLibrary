@@ -1,3 +1,4 @@
+D:\GitHubData\AsyncSocketLibrary\TestClient\bin\Debug\socketsetting.txt
 D:\GitHubData\AsyncSocketLibrary\TestClient\bin\Debug\TestClient.exe.config
 D:\GitHubData\AsyncSocketLibrary\TestClient\bin\Debug\TestClient.exe
 D:\GitHubData\AsyncSocketLibrary\TestClient\bin\Debug\TestClient.pdb

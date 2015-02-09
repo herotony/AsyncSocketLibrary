@@ -19,10 +19,6 @@ namespace AsyncSocketLibrary.Common.Server
 
 		private Func<byte[],byte[]> _dataProcessor;
 
-		//A Semaphore has two parameters, the initial number of available slots
-		// and the maximum number of slots. We'll make them the same. 
-		//This Semaphore is used to keep from going over max connection #. (It is not about 
-		//controlling threading really here.)   
 		Semaphore theMaxConnectionsEnforcer;
 			
 		BufferManager theBufferManager;
@@ -45,28 +41,24 @@ namespace AsyncSocketLibrary.Common.Server
 			this.poolOfRecSendEventArgs = new SocketAsyncEventArgsPool(this.socketListenerSettings.NumberOfSaeaForRecSend);
 			this.poolOfAcceptEventArgs = new SocketAsyncEventArgsPool(this.socketListenerSettings.MaxAcceptOps);
 
-			// Create connections count enforcer
 			this.theMaxConnectionsEnforcer = new Semaphore(this.socketListenerSettings.MaxConnections, this.socketListenerSettings.MaxConnections);
 
 			Init ();
 			StartListen ();
 		}
 
+		public string GetConnectInfo(){
+
+			string info = string.Format ("maxconnop:{0}\r\nmaxdataconn:{1}\r\ncurrentop:{2}\r\ncurrentconn:{3}",
+				              maxConcurrentConnectOpCount, maxConcurrentRecSendCount, concurrentConnectOpCount, concurrentRecSendCount);
+
+			return info;
+		}			
+
 		private void StartListen()
 		{		
 			listenSocket = new Socket(this.socketListenerSettings.LocalEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-
 			listenSocket.Bind(this.socketListenerSettings.LocalEndPoint);
-
-			// Start the listener with a backlog of however many connections.
-			//"backlog" means pending connections. 
-			//The backlog number is the number of clients that can wait for a
-			//SocketAsyncEventArg object that will do an accept operation.
-			//The listening socket keeps the backlog as a queue. The backlog allows 
-			//for a certain # of excess clients waiting to be connected.
-			//If the backlog is maxed out, then the client will receive an error when
-			//trying to connect.
-			//max # for backlog can be limited by the operating system.
 			listenSocket.Listen(this.socketListenerSettings.Backlog);
 
 			StartAccept();
@@ -108,7 +100,6 @@ namespace AsyncSocketLibrary.Common.Server
 		{		
 			ServerDataHoldingUserToken receiveSendToken = (ServerDataHoldingUserToken)e.UserToken;
 
-			// determine which type of operation just completed and call the associated handler
 			switch (e.LastOperation)
 			{
 			case SocketAsyncOperation.Receive:
@@ -123,13 +114,12 @@ namespace AsyncSocketLibrary.Common.Server
 
 			default:
 
-				throw new ArgumentException("The last operation completed on the socket was not a receive or send");
+				throw new ArgumentException(string.Format("The last operation completed on the socket was not a receive or send [tokenId:{0}]",receiveSendToken.TokenId));
 			}
 		}
 			
 		internal SocketAsyncEventArgs CreateNewSaeaForAccept(SocketAsyncEventArgsPool pool)
 		{
-			//Allocate the SocketAsyncEventArgs object. 
 			SocketAsyncEventArgs acceptEventArg = new SocketAsyncEventArgs();
 
 			acceptEventArg.Completed += new EventHandler<SocketAsyncEventArgs>(AcceptEventArg_Completed);
@@ -142,13 +132,13 @@ namespace AsyncSocketLibrary.Common.Server
 			
 		private void AcceptEventArg_Completed(object sender, SocketAsyncEventArgs e)
 		{
-			if (StatisticInfo.watchProgramFlow == true)   //for testing
+			if (StatisticInfo.watchProgramFlow == true)   
 			{
 				AcceptOpUserToken theAcceptOpToken = (AcceptOpUserToken)e.UserToken;
 				LogManager.Log("AcceptEventArg_Completed, id " + theAcceptOpToken.TokenId);
 			}
 
-			if (StatisticInfo.watchThreads == true)   //for testing
+			if (StatisticInfo.watchThreads == true) 
 			{
 				AcceptOpUserToken theAcceptOpToken = (AcceptOpUserToken)e.UserToken;
 				LogManager.Log(string.Format("AcceptEventArg_Completed():{0}", theAcceptOpToken));
@@ -159,7 +149,7 @@ namespace AsyncSocketLibrary.Common.Server
 
 		private void LoopToStartAccept()
 		{
-			if (StatisticInfo.watchProgramFlow == true)   //for testing
+			if (StatisticInfo.watchProgramFlow == true) 
 			{                                
 				LogManager.Log("LoopToStartAccept");
 			}
@@ -171,41 +161,30 @@ namespace AsyncSocketLibrary.Common.Server
 		{
 			var acceptOpToken = (acceptEventArgs.UserToken as AcceptOpUserToken);
 			LogManager.Log("Closing socket of accept id " + acceptOpToken.TokenId);
-
-			//This method closes the socket and releases all resources, both
-			//managed and unmanaged. It internally calls Dispose.           
+						    
 			acceptEventArgs.AcceptSocket.Close();
 
-			//Put the SAEA back in the pool.
 			poolOfAcceptEventArgs.Push(acceptEventArgs);
 		}
 
 		private void ProcessAccept(SocketAsyncEventArgs acceptEventArgs)
 		{
-			// This is when there was an error with the accept op. That should NOT
-			// be happening often. It could indicate that there is a problem with
-			// that socket. If there is a problem, then we would have an infinite
-			// loop here, if we tried to reuse that same socket.
 			if (acceptEventArgs.SocketError != SocketError.Success)
 			{
-				// Loop back to post another accept op. Notice that we are NOT
-				// passing the SAEA object here.
 				LoopToStartAccept();
 
 				AcceptOpUserToken theAcceptOpToken = (AcceptOpUserToken)acceptEventArgs.UserToken;
 				LogManager.Log(string.Format("SocketError:{0}, accept id:{1} " ,acceptEventArgs.SocketError, theAcceptOpToken.TokenId));
 
-				//Let's destroy this socket, since it could be bad.
 				HandleBadAccept(acceptEventArgs);
 
-				//Jump out of the method.
 				return;
 			}
 				
 			int numberOfConnectedSockets = Interlocked.Increment(ref this.concurrentConnectOpCount);
 			if (numberOfConnectedSockets > this.maxConcurrentConnectOpCount)
 			{
-				Interlocked.Increment(ref this.maxConcurrentConnectOpCount);
+				this.maxConcurrentConnectOpCount = numberOfConnectedSockets;
 			}
 
 		    if (StatisticInfo.watchProgramFlow == true)   
@@ -213,33 +192,27 @@ namespace AsyncSocketLibrary.Common.Server
 				AcceptOpUserToken theAcceptOpToken = (AcceptOpUserToken)acceptEventArgs.UserToken;
 				LogManager.Log("ProcessAccept, accept id " + theAcceptOpToken.TokenId);
 			}
-
-
-			//Now that the accept operation completed, we can start another
-			//accept operation, which will do the same. Notice that we are NOT
-			//passing the SAEA object here.
+				
 			LoopToStartAccept();
 
-			// Get a SocketAsyncEventArgs object from the pool of receive/send op 
-			//SocketAsyncEventArgs objects
 			SocketAsyncEventArgs receiveSendEventArgs = this.poolOfRecSendEventArgs.Pop();
 
-			//Create sessionId in UserToken.
 			ServerDataHoldingUserToken userToken = (ServerDataHoldingUserToken)receiveSendEventArgs.UserToken;
 
 			userToken.CreateSessionId ();
 
-			//A new socket was created by the AcceptAsync method. The 
-			//SocketAsyncEventArgs object which did the accept operation has that 
-			//socket info in its AcceptSocket property. Now we will give
-			//a reference for that socket to the SocketAsyncEventArgs 
-			//object which will do receive/send.
 			receiveSendEventArgs.AcceptSocket = acceptEventArgs.AcceptSocket;
 
 			userToken.CreateNewDataHolder (receiveSendEventArgs);
 				
 			acceptEventArgs.AcceptSocket = null;
-			this.poolOfAcceptEventArgs.Push(acceptEventArgs);            
+			this.poolOfAcceptEventArgs.Push(acceptEventArgs);   
+
+			Interlocked.Decrement(ref this.concurrentConnectOpCount);
+			int numberOfRecSendCount = Interlocked.Increment (ref this.concurrentRecSendCount);
+			if (numberOfRecSendCount > maxConcurrentRecSendCount)
+				this.maxConcurrentRecSendCount = numberOfRecSendCount;
+
 
 			StartReceive(receiveSendEventArgs);
 		}
@@ -264,12 +237,12 @@ namespace AsyncSocketLibrary.Common.Server
 				acceptEventArg = CreateNewSaeaForAccept(poolOfAcceptEventArgs);
 			}
 				
-			if (StatisticInfo.watchThreads == true)   //for testing
+			if (StatisticInfo.watchThreads == true)  
 			{
 				AcceptOpUserToken theAcceptOpToken = (AcceptOpUserToken)acceptEventArg.UserToken;
 				LogManager.Log(string.Format("StartAccept():{0}", theAcceptOpToken));
 			}
-			if (StatisticInfo.watchProgramFlow == true)   //for testing
+			if (StatisticInfo.watchProgramFlow == true)  
 			{
 				AcceptOpUserToken theAcceptOpToken = (AcceptOpUserToken)acceptEventArg.UserToken;
 				LogManager.Log("still in StartAccept, id = " + theAcceptOpToken.TokenId);
@@ -280,7 +253,7 @@ namespace AsyncSocketLibrary.Common.Server
 			bool willRaiseEvent = listenSocket.AcceptAsync(acceptEventArg);
 			if (!willRaiseEvent)
 			{                
-				if (StatisticInfo.watchProgramFlow == true)   //for testing
+				if (StatisticInfo.watchProgramFlow == true) 
 				{
 					AcceptOpUserToken theAcceptOpToken = (AcceptOpUserToken)acceptEventArg.UserToken;
 					LogManager.Log("StartAccept in if (!willRaiseEvent), accept token id " + theAcceptOpToken.TokenId);
@@ -289,8 +262,7 @@ namespace AsyncSocketLibrary.Common.Server
 				ProcessAccept(acceptEventArg);
 			}                        
 		}
-
-
+			
 		private void StartReceive(SocketAsyncEventArgs receiveSendEventArgs)
 		{
 			ServerDataHoldingUserToken receiveSendToken = (ServerDataHoldingUserToken)receiveSendEventArgs.UserToken;
@@ -317,9 +289,7 @@ namespace AsyncSocketLibrary.Common.Server
 
 				return;
 			}
-
-			// If no data was received, close the connection. This is a NORMAL
-			// situation that shows when the client has finished sending data.
+				
 			if (receiveSendEventArgs.BytesTransferred == 0)
 			{
 				receiveSendToken.Reset();
@@ -327,12 +297,10 @@ namespace AsyncSocketLibrary.Common.Server
 				return;
 			}
 
-			//The BytesTransferred property tells us how many bytes 
-			//we need to process.
+	
 			int remainingBytesToProcess = receiveSendEventArgs.BytesTransferred;						   
 
-			//If we have not got all of the prefix already, 
-			//then we need to work on it here.                                
+		                    
 			if (receiveSendToken.receivedPrefixBytesDoneCount < this.socketListenerSettings.ReceivePrefixLength)
 			{
 				remainingBytesToProcess = PrefixHandler.HandlePrefix(receiveSendEventArgs, receiveSendToken, remainingBytesToProcess);
@@ -347,9 +315,7 @@ namespace AsyncSocketLibrary.Common.Server
 				}
 			}
 
-			// If we have processed the prefix, we can work on the message now.
-			// We'll arrive here when we have received enough bytes to read
-			// the first byte after the prefix.
+
 			bool incomingTcpMessageIsReady = MessageHandler.HandleMessage(receiveSendEventArgs, receiveSendToken, remainingBytesToProcess);
 
 			if (incomingTcpMessageIsReady == true)
@@ -460,10 +426,7 @@ namespace AsyncSocketLibrary.Common.Server
 
 			//Make sure the new DataHolder has been created for the next connection.
 			//If it has, then dataMessageReceived should be null.
-			if (receiveSendToken.dataMessageReceived != null)
-			{
-				receiveSendToken.dataMessageReceived = null;
-			}
+			receiveSendToken.dataMessageReceived = null;
 
 			// Put the SocketAsyncEventArg back into the pool,
 			// to be used by another client. This 

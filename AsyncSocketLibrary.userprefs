@@ -1,11 +1,9 @@
 ﻿<Properties StartupItem="TestClient\TestClient.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Common\Client\SocketClient.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Common\ConfigManager.cs">
     <Files>
-      <File FileName="Common\Server\SocketListener.cs" Line="6" Column="6" />
-      <File FileName="Common\Client\SocketClient.cs" Line="4" Column="4" />
-      <File FileName="TestServer\Program.cs" Line="49" Column="49" />
-      <File FileName="Common\Server\OutgoingDataPreparer.cs" Line="13" Column="13" />
+      <File FileName="Common\ConfigManager.cs" Line="3" Column="3" />
+      <File FileName="TestClient\Program.cs" Line="23" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
