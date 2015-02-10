@@ -11,6 +11,7 @@ D:\HeroTonyGitHub\AsyncSocketLibrary\AsyncSocketLibrary\bin\Debug\normnfkd.nlp
 D:\HeroTonyGitHub\AsyncSocketLibrary\AsyncSocketLibrary\obj\Debug\AsyncSocketLibrary.csprojResolveAssemblyReference.cache
 D:\HeroTonyGitHub\AsyncSocketLibrary\AsyncSocketLibrary\obj\Debug\AsyncSocketLibrary.dll
 D:\HeroTonyGitHub\AsyncSocketLibrary\AsyncSocketLibrary\obj\Debug\AsyncSocketLibrary.pdb
+D:\GitHubData\AsyncSocketLibrary\bin\Debug\socketsetting.txt
 D:\GitHubData\AsyncSocketLibrary\bin\Debug\AsyncSocketLibrary.dll
 D:\GitHubData\AsyncSocketLibrary\bin\Debug\AsyncSocketLibrary.pdb
 D:\GitHubData\AsyncSocketLibrary\bin\Debug\log4net.dll

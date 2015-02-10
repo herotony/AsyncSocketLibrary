@@ -48,8 +48,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="socketsetting.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 </Project>

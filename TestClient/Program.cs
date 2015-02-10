@@ -20,6 +20,8 @@ namespace TestClient
 			ConfigManager cfm = new ConfigManager ();
 			cfm.ConfigChanged += new ConfigManager.OnConfigChangedEventHandler (GetNewConfig);
 
+			Console.WriteLine ("cfm init over");
+
 			Console.ReadKey ();
 
 			Stopwatch sw = new Stopwatch ();
@@ -77,6 +79,8 @@ namespace TestClient
 		}
 
 		private static void GetNewConfig(object sender,AsyncSocketLibrary.Common.SocketSettingEventArgs e){
+
+			Console.WriteLine ("come in here");
 
 			Dictionary<string,string> dict = e.DictArg;
 

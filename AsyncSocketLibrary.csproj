@@ -61,11 +61,17 @@
     <Compile Include="Common\Server\OutgoingDataPreparer.cs" />
     <Compile Include="Common\ConfigManager.cs" />
     <Compile Include="Common\SocketSettingEventArgs.cs" />
+    <Compile Include="Common\ParseSettingInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Common\" />
     <Folder Include="Common\Server\" />
     <Folder Include="Common\Client\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="socketsetting.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

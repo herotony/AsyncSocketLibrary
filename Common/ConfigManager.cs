@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Collections.Generic;
 
 namespace AsyncSocketLibrary.Common
@@ -8,36 +9,58 @@ namespace AsyncSocketLibrary.Common
 	{	
 		private FileSystemWatcher watcher = null;
 		private string path =string.Empty;
+		private string watchFileName = "socketsetting.txt";
 
 		public delegate void OnConfigChangedEventHandler(object sender,SocketSettingEventArgs arg);
 
 		public event OnConfigChangedEventHandler ConfigChanged;
 
-		public ConfigManager(){
+		public ConfigManager(bool startWatcher = false){
 
 			path = AppDomain.CurrentDomain.BaseDirectory;
 
 			if(!path.EndsWith(@"\"))
 				path+=@"\";
-			watcher = new FileSystemWatcher (path, "*.txt");
-			watcher.NotifyFilter = NotifyFilters.LastWrite|NotifyFilters.LastAccess|NotifyFilters.Size;
-			watcher.Changed += new FileSystemEventHandler (ShouldInvoked);
+
+			if (startWatcher) {
+
+				watcher = new FileSystemWatcher (path, "*.txt");
+				//watcher.NotifyFilter = NotifyFilters.LastWrite|NotifyFilters.LastAccess|NotifyFilters.Size;
+				watcher.NotifyFilter = NotifyFilters.LastWrite;
+				watcher.Changed += new FileSystemEventHandler (ShouldInvoked);
+
+				//开始监控变化
+				watcher.EnableRaisingEvents = true;
+			}				
 		}
 
 		private void ShouldInvoked(object sender,FileSystemEventArgs arg){
 
-			string fileName = arg.Name;
+			//莫名会触发两次，这里屏蔽一次
+			if (Monitor.TryEnter (this, 1)) {
 
-			Console.WriteLine (fileName);
+				string fileName = arg.Name;				
 
-			if (!fileName.ToLower ().Equals ("socketsetting.txt"))
-				return;
+				if (!fileName.ToLower ().Equals (watchFileName))
+					return;
+
+				Dictionary<string,string> dictConfig = GetOriginalSettingInfo ();
+
+				if (dictConfig!=null) {
+
+					if (ConfigChanged != null)
+						ConfigChanged (this, new SocketSettingEventArgs(dictConfig));
+				}
+			}									
+		}		
+
+		public Dictionary<string,string> GetOriginalSettingInfo(){
 
 			Dictionary<string,string> dictConfig = new Dictionary<string, string> ();
 
 			string content = string.Empty;
 
-			using (FileStream fs = new FileStream (arg.FullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)) {
+			using (FileStream fs = new FileStream (path+watchFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)) {
 
 				StreamReader reader = new StreamReader (fs);
 
@@ -45,12 +68,12 @@ namespace AsyncSocketLibrary.Common
 			}
 
 			if (string.IsNullOrEmpty (content))
-				return;
+				return null;
 
 			string[] lines = content.Split (new string[]{ "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
 			if (lines == null || lines.Length.Equals (0))
-				return;
+				return null;
 
 			for (int i = 0; i < lines.Length; i++) {
 
@@ -64,13 +87,9 @@ namespace AsyncSocketLibrary.Common
 				else
 					dictConfig.Add (configInfo [0], configInfo [1]);
 			}
-
-			if (dictConfig.Count > 0) {
-
-				if (ConfigChanged != null)
-					ConfigChanged (this, new SocketSettingEventArgs(dictConfig));
-			}				
-		}			
+				
+			return dictConfig.Count > 0 ? dictConfig : null;
+		}
 	}
 }
 

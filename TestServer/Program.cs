@@ -11,15 +11,12 @@ namespace TestServer
 		private static SocketListener listener;
 
 		public static void Main (string[] args)
-		{
-		
+		{		
 			Console.WriteLine ("Hello World!");
 
-			try{
+			try{			
 
-				SocketListenerSettings settings = new SocketListenerSettings (30, 30, 10000, 100, 4, 128, 4, 2, new IPEndPoint (IPAddress.Any, 6969));
-
-				listener = new SocketListener (settings, process);
+				listener = new SocketListener (process);
 
 				Thread th = new Thread(new ThreadStart(Run));
 				th.IsBackground = true;
@@ -36,7 +33,7 @@ namespace TestServer
 
 		private static byte[] process(byte[] input){
 		
-			LogManager.Log(string.Format ("th id:{0}", Thread.CurrentThread.ManagedThreadId));
+			//LogManager.Log(string.Format ("th id:{0}", Thread.CurrentThread.ManagedThreadId));
 			return input;
 
 		}

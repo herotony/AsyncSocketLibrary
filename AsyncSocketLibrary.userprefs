@@ -1,11 +1,6 @@
 ﻿<Properties StartupItem="TestClient\TestClient.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Common\ConfigManager.cs">
-    <Files>
-      <File FileName="Common\ConfigManager.cs" Line="3" Column="3" />
-      <File FileName="TestClient\Program.cs" Line="23" Column="23" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

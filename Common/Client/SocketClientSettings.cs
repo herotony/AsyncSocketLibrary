@@ -28,12 +28,14 @@ namespace AsyncSocketLibrary.Common.Client
 		//用于BufferManager时，就是：numberOfSaeaForRecSend * bufferSize * 2 而每个连接的是 buffersize * 2
 		private int opsToPreAllocate;
 
+		private int timeOutByMS;//单位：毫秒
+
 		private IPEndPoint serverEndPoint;
 
 		//可考虑大并发时，一个连接发用于送多条请求消息后再关闭...
 		private int numberOfMessagesPerConnection;
 
-		public SocketClientSettings(IPEndPoint theServerEndPoint, int numberOfMessagesPerConnection, int maxSimultaneousConnectOps, int theMaxConnections, int bufferSize=128, int receivePrefixLength = 4, int sendPrefixLength = 4, int opsToPreAlloc = 2 )
+		public SocketClientSettings(IPEndPoint theServerEndPoint, int numberOfMessagesPerConnection, int maxSimultaneousConnectOps, int theMaxConnections, int bufferSize=128, int receivePrefixLength = 4, int sendPrefixLength = 4, int opsToPreAlloc = 2,int timeOut=1000 )
 		{			         
 			this.maxSimultaneousConnectOps = maxSimultaneousConnectOps;
 			this.maxSimultaneousConnections = theMaxConnections;
@@ -44,8 +46,16 @@ namespace AsyncSocketLibrary.Common.Client
 			this.opsToPreAllocate = opsToPreAlloc;
 			this.serverEndPoint = theServerEndPoint;
 			this.numberOfMessagesPerConnection = numberOfMessagesPerConnection;
+			this.timeOutByMS = timeOut;
 		}
 			
+		public int TimeOutByMS{
+
+			get{ 
+
+				return this.timeOutByMS;
+			}
+		}
 
 		public int MaxConnectOps
 		{

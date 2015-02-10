@@ -30,14 +30,18 @@ namespace AsyncSocketLibrary.Common.Server
 		SocketAsyncEventArgsPool poolOfAcceptEventArgs;
 		SocketAsyncEventArgsPool poolOfRecSendEventArgs;
 
-		public SocketListener(SocketListenerSettings theSocketListenerSettings,Func<byte[],byte[]> dataProcessor){
+		public SocketListener(Func<byte[],byte[]> dataProcessor){
 		
+			ConfigManager cfm = new ConfigManager ();
+			Dictionary<string,string> dictCfg = cfm.GetOriginalSettingInfo ();
+
+			ParseSettingInfo pInfo = new ParseSettingInfo (dictCfg);
+
 			this._dataProcessor = dataProcessor;
-			this.socketListenerSettings = theSocketListenerSettings;
+			this.socketListenerSettings = pInfo.GetSocketListenerSetting();
 
 			this.theBufferManager = new BufferManager(this.socketListenerSettings.BufferSize * this.socketListenerSettings.NumberOfSaeaForRecSend * this.socketListenerSettings.OpsToPreAllocate,
 				                                      this.socketListenerSettings.BufferSize * this.socketListenerSettings.OpsToPreAllocate);
-
 			this.poolOfRecSendEventArgs = new SocketAsyncEventArgsPool(this.socketListenerSettings.NumberOfSaeaForRecSend);
 			this.poolOfAcceptEventArgs = new SocketAsyncEventArgsPool(this.socketListenerSettings.MaxAcceptOps);
 
