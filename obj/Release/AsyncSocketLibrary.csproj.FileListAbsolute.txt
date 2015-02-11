@@ -1,0 +1,6 @@
+D:\GitHubData\AsyncSocketLibrary\bin\Release\socketsetting.txt
+D:\GitHubData\AsyncSocketLibrary\bin\Release\AsyncSocketLibrary.dll
+D:\GitHubData\AsyncSocketLibrary\bin\Release\AsyncSocketLibrary.pdb
+D:\GitHubData\AsyncSocketLibrary\bin\Release\log4net.dll
+D:\GitHubData\AsyncSocketLibrary\obj\Release\AsyncSocketLibrary.dll
+D:\GitHubData\AsyncSocketLibrary\obj\Release\AsyncSocketLibrary.pdb

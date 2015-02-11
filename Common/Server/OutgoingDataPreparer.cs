@@ -24,7 +24,8 @@ namespace AsyncSocketLibrary.Common.Server
 			Byte[] idByteArray = BitConverter.GetBytes(userToken.dataHolder.receiveTransMissionId);
 
 			//Determine the length of all the data that we will send back.
-			Int32 lengthOfCurrentOutgoingMessage = idByteArray.Length + userToken.dataMessageReceived.Length;
+			//Int32 lengthOfCurrentOutgoingMessage = idByteArray.Length + userToken.dataMessageReceived.Length;
+			int lengthOfCurrentOutgoingMessage = idByteArray.Length + sendData.Length;
 
 			//So, now we convert the length integer into a byte array.
 			//Aren't byte arrays wonderful? Maybe you'll dream about byte arrays tonight!
@@ -37,7 +38,8 @@ namespace AsyncSocketLibrary.Common.Server
 			Buffer.BlockCopy(arrayOfBytesInPrefix, 0, userToken.dataToSend, 0, userToken.sendPrefixLength);
 			Buffer.BlockCopy(idByteArray, 0, userToken.dataToSend, userToken.sendPrefixLength, idByteArray.Length);
 			//The message that the client sent is already in a byte array, in DataHolder.
-			Buffer.BlockCopy(userToken.dataMessageReceived, 0, userToken.dataToSend, userToken.sendPrefixLength + idByteArray.Length, userToken.dataMessageReceived.Length);
+			//Buffer.BlockCopy(userToken.dataMessageReceived, 0, userToken.dataToSend, userToken.sendPrefixLength + idByteArray.Length, userToken.dataMessageReceived.Length);
+			Buffer.BlockCopy(sendData, 0, userToken.dataToSend, userToken.sendPrefixLength + idByteArray.Length, sendData.Length);
 
 			userToken.sendBytesRemainingCount = userToken.sendPrefixLength + lengthOfCurrentOutgoingMessage;
 			userToken.bytesSentAlreadyCount = 0;

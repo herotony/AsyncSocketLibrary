@@ -57,13 +57,28 @@ namespace AsyncSocketLibrary.Common.Server
 				              maxConcurrentConnectOpCount, maxConcurrentRecSendCount, concurrentConnectOpCount, concurrentRecSendCount);
 
 			return info;
-		}			
+		}		
+
+		public void Stop(){
+
+			try{
+
+				listenSocket.Shutdown (SocketShutdown.Both);
+				listenSocket.Close ();
+				listenSocket = null;
+
+			}catch(Exception shutDownErr){
+
+				LogManager.Log (string.Empty, shutDownErr);
+			}
+		}
 
 		private void StartListen()
 		{		
 			listenSocket = new Socket(this.socketListenerSettings.LocalEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 			listenSocket.Bind(this.socketListenerSettings.LocalEndPoint);
 			listenSocket.Listen(this.socketListenerSettings.Backlog);
+
 
 			StartAccept();
 		}

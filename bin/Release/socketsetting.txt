@@ -1,0 +1,7 @@
+﻿hostinfo:10.9.60.63|6969
+connectsocket_count:30
+datasocket_count:100
+buffersize(kb):1024
+sendcountperconnect:1
+timeoutbyms(ms):1000
+queuereqcount:1000000
