@@ -27,7 +27,7 @@ namespace TestClient
 			Stopwatch sw = new Stopwatch ();
 
 			sw.Start ();
-			int testCount = 1000;
+			int testCount = 10000;
 			int successCount = 0;
 			int failedCount = 0;
 
