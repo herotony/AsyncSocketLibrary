@@ -53,9 +53,10 @@ namespace TestClient
 						else{
 							Interlocked.Increment(ref successCount);
 
-							lock(lockObj){
-								sb.AppendFormat("\r\ntranid:{0} retdata:{1}",BitConverter.ToInt32(result,0),Encoding.UTF8.GetString(result,4,result.Length-4));
-							}
+                            lock (lockObj)
+                            {
+                                sb.AppendFormat("\r\ntranid:{0} retdata:{1}", BitConverter.ToInt32(result, 0), Encoding.UTF8.GetString(result, 4, result.Length - 4));
+                            }
 						}
 
 

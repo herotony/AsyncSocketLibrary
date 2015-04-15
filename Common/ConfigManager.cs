@@ -24,8 +24,7 @@ namespace AsyncSocketLibrary.Common
 
 			if (startWatcher) {
 
-				watcher = new FileSystemWatcher (path, "*.txt");
-				//watcher.NotifyFilter = NotifyFilters.LastWrite|NotifyFilters.LastAccess|NotifyFilters.Size;
+				watcher = new FileSystemWatcher (path, "*.txt");				
 				watcher.NotifyFilter = NotifyFilters.LastWrite;
 				watcher.Changed += new FileSystemEventHandler (ShouldInvoked);
 
